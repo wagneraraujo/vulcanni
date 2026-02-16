@@ -7,10 +7,12 @@ import "yet-another-react-lightbox/styles.css";
 // Since Vite's import.meta.glob doesn't work with public folder,
 // we need to manually list the images or generate this list
 const imageNames = [
-    'vul1', 'vul2', 'vul3', 'vul4', 'vul5', 'vul6', 'vul7', 'vul8', 'vul9', 'vul10',
-    'vul11', 'vul12', 'vul13', 'vul14', 'vul15', 'vul16', 'vul17', 'vul18', 'vul19', 'vul20',
-    'vul21', 'vul22', 'vul23', 'vul24', 'vul25', 'vul26', 'vul27', 'vul28', 'vul29', 'vul30',
-    'vul31', 'vul32'
+    'DSC01855.jpg', 'DSC01862.jpg', 'DSC01884.jpg', 'DSC01888.jpg', 'DSC01898.jpg',
+    'DSC01909.jpg', 'DSC01937.jpg', 'DSC01965.jpg', 'DSC01977.jpg', 'DSC01997.jpg',
+    'DSC02024.jpg', 'DSC02029.jpg', 'DSC02035.jpg', 'DSC02047.jpg', 'DSC02049.jpg',
+    'DSC02052.jpg', 'DSC02055.jpg', 'DSC02068.jpg', 'DSC02087.jpg', 'DSC02097.jpg',
+    'DSC02125.jpg', 'DSC02144.jpg', 'DSC02157.jpg', 'DSC02162.jpg', 'DSC02193.jpg',
+    'DSC02197.jpg'
 ];
 
 const GallerySection = () => {
