@@ -62,7 +62,7 @@ export default function Menu() {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
-        <div className="min-h-screen bg-[#040000] text-white">
+        <div className="min-h-screen bg-background text-foreground">
             {/* Floating WhatsApp Button */}
             <a
                 href={whatsappUrl}
@@ -75,19 +75,19 @@ export default function Menu() {
             </a>
 
             {/* Header */}
-            <header className="sticky top-0 z-40 bg-[#040000]/95 backdrop-blur-md border-b border-[#716868]/20">
+            <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 py-6">
                     {/* Logo */}
                     <div className="flex justify-center mb-4">
                         <img
                             src="/logo-vulcani.png"
                             alt="Vulcanici Pizzeria Napoletana"
-                            className="h-16 md:h-20 w-auto object-contain brightness-0 invert"
+                            className="h-16 md:h-20 w-auto object-contain drop-shadow-sm"
                         />
                     </div>
 
                     {/* Restaurant Name */}
-                    <h1 className="text-center text-2xl md:text-3xl font-bold tracking-wide mb-4 text-white">
+                    <h1 className="text-center text-2xl md:text-3xl font-bold tracking-wide mb-4 text-primary">
                         Vulcanici Pizzeria Napoletana
                     </h1>
 
@@ -95,10 +95,10 @@ export default function Menu() {
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm">
                         {unidades.map((unidade, index) => (
                             <div key={index} className="flex items-start gap-2">
-                                <MapPin className="w-5 h-5 text-[#E31E26] mt-0.5 flex-shrink-0" />
+                                <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                                 <div className="text-center md:text-left">
-                                    <p className="font-bold text-white text-base">{unidade.cidade}</p>
-                                    <p className="text-gray-300 font-medium">{unidade.endereco}</p>
+                                    <p className="font-bold text-foreground text-base">{unidade.cidade}</p>
+                                    <p className="text-muted-foreground font-medium">{unidade.endereco}</p>
                                 </div>
                             </div>
                         ))}
@@ -116,8 +116,8 @@ export default function Menu() {
                                 key={index}
                                 onClick={() => setActiveCategory(index)}
                                 className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-base transition-all duration-300 ${activeCategory === index
-                                    ? 'bg-[#E31E26] text-white shadow-lg shadow-[#E31E26]/30'
-                                    : 'bg-[#716868]/20 text-gray-200 hover:bg-[#716868]/30 hover:text-white'
+                                    ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
                                     }`}
                             >
                                 {category.title}
@@ -126,8 +126,8 @@ export default function Menu() {
                         <button
                             onClick={() => setActiveCategory(menuCategories.length)}
                             className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-base transition-all duration-300 ${activeCategory === menuCategories.length
-                                ? 'bg-[#E31E26] text-white shadow-lg shadow-[#E31E26]/30'
-                                : 'bg-[#716868]/20 text-gray-200 hover:bg-[#716868]/30 hover:text-white'
+                                ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                                : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
                                 }`}
                         >
                             Bebidas
@@ -138,7 +138,7 @@ export default function Menu() {
                 {/* Menu Items Grid */}
                 {activeCategory < menuCategories.length ? (
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-[#E31E26]">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">
                             {menuCategories[activeCategory].title}
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -154,23 +154,23 @@ export default function Menu() {
                 ) : (
                     /* Bebidas Section */
                     <div className="space-y-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-[#E31E26]">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">
                             Bebidas
                         </h2>
 
                         {/* Águas */}
                         <div>
-                            <h3 className="text-2xl font-bold mb-4 text-white border-b border-[#716868]/30 pb-2">
+                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
                                 Águas
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {aguas.map((item, index) => (
                                     <div
                                         key={index}
-                                        className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                     >
-                                        <span className="text-white font-semibold text-base">{item.nome}</span>
-                                        <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                     </div>
                                 ))}
                             </div>
@@ -178,17 +178,17 @@ export default function Menu() {
 
                         {/* Refrigerantes */}
                         <div>
-                            <h3 className="text-2xl font-bold mb-4 text-white border-b border-[#716868]/30 pb-2">
+                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
                                 Refrigerantes
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {refrigerantes.map((item, index) => (
                                     <div
                                         key={index}
-                                        className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                     >
-                                        <span className="text-white font-semibold text-base">{item.nome}</span>
-                                        <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                     </div>
                                 ))}
                             </div>
@@ -196,17 +196,17 @@ export default function Menu() {
 
                         {/* Cervejas */}
                         <div>
-                            <h3 className="text-2xl font-bold mb-4 text-white border-b border-[#716868]/30 pb-2">
+                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
                                 Cervejas
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {cervejas.map((item, index) => (
                                     <div
                                         key={index}
-                                        className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                     >
-                                        <span className="text-white font-semibold text-base">{item.nome}</span>
-                                        <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                     </div>
                                 ))}
                             </div>
@@ -214,22 +214,22 @@ export default function Menu() {
 
                         {/* Vinhos */}
                         <div>
-                            <h3 className="text-2xl font-bold mb-4 text-white border-b border-[#716868]/30 pb-2">
+                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
                                 Vinhos
                             </h3>
 
                             <div className="space-y-6">
                                 {/* Tinto */}
                                 <div>
-                                    <h4 className="text-lg font-bold text-[#E31E26] mb-3">Tinto</h4>
+                                    <h4 className="text-lg font-bold text-primary mb-3">Tinto</h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {vinhosTinto.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                             >
-                                                <span className="text-white font-semibold text-base">{item.nome}</span>
-                                                <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -237,15 +237,15 @@ export default function Menu() {
 
                                 {/* Branco */}
                                 <div>
-                                    <h4 className="text-lg font-bold text-[#E31E26] mb-3">Branco</h4>
+                                    <h4 className="text-lg font-bold text-primary mb-3">Branco</h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {vinhosBranco.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                             >
-                                                <span className="text-white font-semibold text-base">{item.nome}</span>
-                                                <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -253,15 +253,15 @@ export default function Menu() {
 
                                 {/* Rosé */}
                                 <div>
-                                    <h4 className="text-lg font-bold text-[#E31E26] mb-3">Rosé</h4>
+                                    <h4 className="text-lg font-bold text-primary mb-3">Rosé</h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {vinhosRose.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                             >
-                                                <span className="text-white font-semibold text-base">{item.nome}</span>
-                                                <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -269,15 +269,15 @@ export default function Menu() {
 
                                 {/* Espumante */}
                                 <div>
-                                    <h4 className="text-lg font-bold text-[#E31E26] mb-3">Espumante</h4>
+                                    <h4 className="text-lg font-bold text-primary mb-3">Espumante</h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {espumante.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                             >
-                                                <span className="text-white font-semibold text-base">{item.nome}</span>
-                                                <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -285,15 +285,15 @@ export default function Menu() {
 
                                 {/* Sangria 1L */}
                                 <div>
-                                    <h4 className="text-lg font-bold text-[#E31E26] mb-3">Sangria 1L</h4>
+                                    <h4 className="text-lg font-bold text-primary mb-3">Sangria 1L</h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {sangria.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                             >
-                                                <span className="text-white font-semibold text-base">{item.nome}</span>
-                                                <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -301,15 +301,15 @@ export default function Menu() {
 
                                 {/* Ao Copo */}
                                 <div>
-                                    <h4 className="text-lg font-bold text-[#E31E26] mb-3">Ao Copo</h4>
+                                    <h4 className="text-lg font-bold text-primary mb-3">Ao Copo</h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {aoCopo.map((item, index) => (
                                             <div
                                                 key={index}
-                                                className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                             >
-                                                <span className="text-white font-semibold text-base">{item.nome}</span>
-                                                <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -319,17 +319,17 @@ export default function Menu() {
 
                         {/* Café e Digestivos */}
                         <div>
-                            <h3 className="text-2xl font-bold mb-4 text-white border-b border-[#716868]/30 pb-2">
+                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
                                 Café e Digestivos
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {cafeDigestivos.map((item, index) => (
                                     <div
                                         key={index}
-                                        className="flex justify-between items-center bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg p-4 hover:border-[#E31E26] transition-all duration-300"
+                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
                                     >
-                                        <span className="text-white font-semibold text-base">{item.nome}</span>
-                                        <span className="text-[#E31E26] font-bold text-lg">€{item.preco.toFixed(2)}</span>
+                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
+                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
                                     </div>
                                 ))}
                             </div>
@@ -339,17 +339,17 @@ export default function Menu() {
             </main>
 
             {/* Footer */}
-            <footer className="bg-[#040000] border-t border-[#716868]/20 py-12 mt-16">
+            <footer className="bg-secondary border-t border-border py-12 mt-16">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                         {/* Contact */}
                         <div>
-                            <h3 className="text-[#E31E26] font-semibold mb-4">Contato</h3>
+                            <h3 className="text-primary font-semibold mb-4">Contato</h3>
                             <a
                                 href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 text-[#716868] hover:text-green-400 transition-colors mb-2"
+                                className="flex items-center gap-2 text-muted-foreground hover:text-green-600 transition-colors mb-2"
                             >
                                 <Phone className="w-4 h-4" />
                                 <span>+351 939 000 735</span>
@@ -358,13 +358,13 @@ export default function Menu() {
 
                         {/* Social */}
                         <div>
-                            <h3 className="text-[#E31E26] font-semibold mb-4">Redes Sociais</h3>
+                            <h3 className="text-primary font-semibold mb-4">Redes Sociais</h3>
                             <div className="flex gap-4">
                                 <a
                                     href="https://www.instagram.com/vulcaniciguimaraes"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[#716868] hover:text-[#E31E26] transition-colors"
+                                    className="text-muted-foreground hover:text-primary transition-colors"
                                 >
                                     <Instagram className="w-6 h-6" />
                                 </a>
@@ -372,7 +372,7 @@ export default function Menu() {
                                     href="https://www.facebook.com/profile.php?id=61552967728211"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[#716868] hover:text-[#E31E26] transition-colors"
+                                    className="text-muted-foreground hover:text-primary transition-colors"
                                 >
                                     <Facebook className="w-6 h-6" />
                                 </a>
@@ -384,12 +384,12 @@ export default function Menu() {
                             <img
                                 src="/logo-vulcani.png"
                                 alt="Vulcanici"
-                                className="h-12 w-auto brightness-0 invert opacity-50"
+                                className="h-12 w-auto opacity-50"
                             />
                         </div>
                     </div>
 
-                    <div className="text-center text-[#716868] text-sm">
+                    <div className="text-center text-muted-foreground text-sm">
                         <p>© {new Date().getFullYear()} Vulcanici Pizzeria Napoletana. Todos os direitos reservados.</p>
                     </div>
                 </div>

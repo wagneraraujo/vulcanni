@@ -48,6 +48,42 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        vulcanici: {
+          primary: {
+            DEFAULT: '#2B5B9E',
+            light: '#6B9BD1',
+            dark: '#1A3A6B',
+          },
+          accent: {
+            yellow: '#F4D03F',
+            gold: '#D4A517',
+          },
+          neutral: {
+            white: '#FFFFFF',
+            gray: {
+              50: '#F8F9FA',
+              100: '#E8EEF4',
+              200: '#A8C5E0',
+              300: '#5A6C7D',
+              400: '#1A2332',
+            },
+          },
+          background: {
+            primary: '#FFFFFF',
+            secondary: '#F8F9FA',
+            tertiary: '#E8EEF4',
+          },
+          text: {
+            primary: '#1A2332',
+            secondary: '#5A6C7D',
+            light: '#FFFFFF',
+          },
+          state: {
+            hover: '#6B9BD1',
+            active: '#1A3A6B',
+            focus: '#2B5B9E',
+          },
+        },
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",

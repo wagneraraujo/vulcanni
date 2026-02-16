@@ -31,10 +31,10 @@ const GallerySection = () => {
     }
 
     return (
-        <section className="py-20 px-6 bg-black relative z-10">
+        <section className="py-20 px-6 bg-secondary relative z-10 text-center">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
-                    className="text-4xl md:text-5xl lg:text-6xl font-light text-center text-white mb-16"
+                    className="text-4xl md:text-5xl lg:text-6xl font-light text-center text-primary mb-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -61,7 +61,7 @@ const GallerySection = () => {
                                 className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110"
                                 loading="lazy"
                             />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                            <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300" />
                         </motion.div>
                     ))}
                 </div>

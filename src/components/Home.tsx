@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import GallerySection from './ui/GallerySection';
 
 // WhatsApp Icon Component
+// WhatsApp Icon Component
 const WhatsAppIcon = ({ className }: { className?: string }) => (
     <svg
         viewBox="0 0 24 24"
@@ -20,7 +21,7 @@ export default function Home() {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
-        <div className="relative min-h-screen w-full bg-black overflow-x-hidden">
+        <div className="relative min-h-screen w-full bg-background overflow-x-hidden">
             {/* Background Image - Fixed */}
             <div
                 className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
@@ -28,8 +29,8 @@ export default function Home() {
                     backgroundImage: 'url(/bg-pizza.jpg)',
                 }}
             >
-                {/* Dark overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
+                {/* Light overlay gradient - Vulcanici Theme */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/95" />
             </div>
 
             {/* Floating WhatsApp Button */}
@@ -52,38 +53,38 @@ export default function Home() {
                         <img
                             src="/logo-vulcani.png"
                             alt="Vulcanici Pizzeria Napoletana"
-                            className="h-24 md:h-32 lg:h-40 w-auto object-contain drop-shadow-2xl brightness-0 invert"
+                            className="h-24 md:h-32 lg:h-40 w-auto object-contain drop-shadow-md"
                         />
                     </div>
 
                     {/* Main Title */}
-                    <h1 className="animate-fade-in-up opacity-0-start delay-200 text-center text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-white/95 mb-4">
+                    <h1 className="animate-fade-in-up opacity-0-start delay-200 text-center text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-primary mb-4">
                         Site em Desenvolvimento
                     </h1>
 
                     {/* Subtitle */}
-                    <p className="animate-fade-in-up opacity-0-start delay-300 text-center text-lg md:text-xl text-white/70 font-light tracking-wider mb-12 max-w-2xl">
+                    <p className="animate-fade-in-up opacity-0-start delay-300 text-center text-lg md:text-xl text-muted-foreground font-light tracking-wider mb-12 max-w-2xl">
                         Estamos preparando algo especial para você.
                         <br />
-                        <span className="text-white/90">Em breve, nossa nova experiência digital.</span>
+                        <span className="text-foreground font-medium">Em breve, nossa nova experiência digital.</span>
                     </p>
 
                     {/* Divider */}
-                    <div className="animate-fade-in opacity-0-start delay-500 w-24 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent mb-12" />
+                    <div className="animate-fade-in opacity-0-start delay-500 w-24 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent mb-12" />
 
                     {/* Menu Button */}
                     <Link
                         to="/menu"
-                        className="animate-fade-in-up opacity-0-start delay-600 px-8 py-4 bg-gradient-to-r from-[#E31E26] to-[#501013] hover:from-[#501013] hover:to-[#E31E26] text-white font-semibold text-lg rounded-full shadow-lg hover:shadow-xl hover:shadow-[#E31E26]/30 hover:scale-105 transition-all duration-300 mb-8"
+                        className="animate-fade-in-up opacity-0-start delay-600 px-8 py-4 bg-gradient-to-r from-[#2B5B9E] to-[#1A3A6B] hover:from-[#1A3A6B] hover:to-[#2B5B9E] text-white font-semibold text-lg rounded-full shadow-lg hover:shadow-xl hover:shadow-[#2B5B9E]/30 hover:scale-105 transition-all duration-300 mb-8"
                     >
                         Ver Cardápio Completo
                     </Link>
 
                     {/* Contact Info */}
-                    <div className="animate-fade-in-up opacity-0-start delay-700 flex flex-col items-center gap-4 mb-8 text-white/80">
+                    <div className="animate-fade-in-up opacity-0-start delay-700 flex flex-col items-center gap-4 mb-8 text-muted-foreground">
                         {/* Address */}
                         <div className="flex items-start gap-3 text-center">
-                            <MapPin className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" />
+                            <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                             <div className="text-sm md:text-base tracking-wide">
                                 <p>R. Antero de Quental, 253</p>
                                 <p>4810-026 Guimarães, Portugal</p>
@@ -94,9 +95,9 @@ export default function Home() {
                             href={whatsappUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-3 hover:text-green-400 transition-colors"
+                            className="flex items-center gap-3 hover:text-green-600 transition-colors"
                         >
-                            <Phone className="w-5 h-5 text-green-500 flex-shrink-0" />
+                            <Phone className="w-5 h-5 text-green-600 flex-shrink-0" />
                             <span className="text-sm md:text-base tracking-wide">+351 939 000 735</span>
                         </a>
                     </div>
@@ -107,7 +108,7 @@ export default function Home() {
                             href="https://www.instagram.com/vulcaniciguimaraes"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="social-icon flex items-center gap-2 text-white/80 hover:text-amber-500"
+                            className="social-icon flex items-center gap-2 text-muted-foreground hover:text-accent"
                             aria-label="Instagram"
                         >
                             <Instagram className="w-6 h-6" />
@@ -117,7 +118,7 @@ export default function Home() {
                             href="https://www.facebook.com/profile.php?id=61552967728211"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="social-icon flex items-center gap-2 text-white/80 hover:text-amber-500"
+                            className="social-icon flex items-center gap-2 text-muted-foreground hover:text-accent"
                             aria-label="Facebook"
                         >
                             <Facebook className="w-6 h-6" />
@@ -131,7 +132,7 @@ export default function Home() {
                             const gallerySection = document.querySelector('section.py-20');
                             gallerySection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }}
-                        className="animate-fade-in-up opacity-0-start delay-1200 px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2 mb-16"
+                        className="animate-fade-in-up opacity-0-start delay-1200 px-8 py-3 bg-gradient-to-r from-accent to-[#D4A517] hover:from-[#D4A517] hover:to-accent text-white font-medium rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2 mb-16"
                     >
                         <span>Ver Nossa Galeria</span>
                         <ChevronDown className="w-5 h-5" />
@@ -139,7 +140,7 @@ export default function Home() {
 
                     {/* Scroll Indicator */}
                     <div className="animate-bounce absolute bottom-8">
-                        <ChevronDown className="w-8 h-8 text-white/50" />
+                        <ChevronDown className="w-8 h-8 text-primary/50" />
                     </div>
 
                 </div>
@@ -149,8 +150,8 @@ export default function Home() {
             <GallerySection />
 
             {/* Footer */}
-            <footer className="w-full bg-black py-8 border-t border-white/10 text-center relative z-10">
-                <p className="text-white/40 text-xs tracking-widest uppercase">
+            <footer className="w-full bg-secondary py-8 border-t border-border text-center relative z-10">
+                <p className="text-muted-foreground text-xs tracking-widest uppercase">
                     Vulcanici Pizzeria Napoletana © {new Date().getFullYear()}
                 </p>
             </footer>

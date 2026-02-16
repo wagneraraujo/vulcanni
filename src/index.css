@@ -3,25 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 8%;
-  --foreground: 40 30% 95%;
-  --card: 0 0% 10%;
-  --card-foreground: 40 30% 95%;
-  --popover: 0 0% 10%;
-  --popover-foreground: 40 30% 95%;
-  --primary: 210 25% 35%;
-  --primary-foreground: 40 30% 95%;
-  --secondary: 0 0% 15%;
-  --secondary-foreground: 40 30% 95%;
-  --muted: 0 0% 20%;
-  --muted-foreground: 40 10% 70%;
-  --accent: 35 80% 55%;
-  --accent-foreground: 0 0% 100%;
+  /* Vulcanici Theme - Light Mode */
+  --background: 0 0% 100%; /* #FFFFFF */
+  --foreground: 217 32% 15%; /* #1A2332 */
+
+  --card: 0 0% 100%; /* #FFFFFF */
+  --card-foreground: 217 32% 15%; /* #1A2332 */
+
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 217 32% 15%; /* #1A2332 */
+
+  --primary: 215 57% 39%; /* #2B5B9E */
+  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+
+  --secondary: 210 17% 98%; /* #F8F9FA */
+  --secondary-foreground: 215 57% 39%; /* #2B5B9E - Using primary for text on secondary */
+
+  --muted: 210 29% 93%; /* #E8EEF4 */
+  --muted-foreground: 209 16% 42%; /* #5A6C7D */
+
+  --accent: 48 89% 60%; /* #F4D03F */
+  --accent-foreground: 217 32% 15%; /* #1A2332 */
+
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 20%;
-  --input: 0 0% 20%;
-  --ring: 210 25% 35%;
+
+  --border: 209 45% 77%; /* #A8C5E0 */
+  --input: 209 45% 77%; /* #A8C5E0 */
+  --ring: 215 57% 39%; /* #2B5B9E */
+
   --radius: 0.5rem;
 }
 
