@@ -2,14 +2,18 @@ import type { MenuItem } from '../data/menuData';
 
 interface MenuCardProps {
     item: MenuItem;
+    onImageClick?: () => void;
 }
 
-export default function MenuCard({ item }: MenuCardProps) {
+export default function MenuCard({ item, onImageClick }: MenuCardProps) {
     return (
         <div className="group bg-[#040000]/80 backdrop-blur-sm border border-[#716868]/20 rounded-lg overflow-hidden hover:border-[#E31E26] transition-all duration-300 hover:shadow-lg hover:shadow-[#E31E26]/20">
             {/* Image Placeholder */}
             {item.image && (
-                <div className="relative h-48 bg-gradient-to-br from-[#501013] to-[#040000] overflow-hidden">
+                <div
+                    className="relative h-48 bg-gradient-to-br from-[#501013] to-[#040000] overflow-hidden cursor-pointer"
+                    onClick={onImageClick}
+                >
                     <img
                         src={item.image}
                         alt={item.nome}

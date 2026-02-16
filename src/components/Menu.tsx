@@ -16,7 +16,11 @@ import {
     sangria,
     aoCopo,
     cafeDigestivos,
+    type MenuItem,
 } from '../data/menuData';
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 // WhatsApp Icon Component
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -32,6 +36,27 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export default function Menu() {
     const [activeCategory, setActiveCategory] = useState(0);
+    const [lightboxIndex, setLightboxIndex] = useState(-1);
+
+    // Calculate slides for the current view (only items with images)
+    // We need to know which items have images to map the index correctly
+    const currentCategoryItems = activeCategory < menuCategories.length
+        ? menuCategories[activeCategory].items
+        : []; // Bebidas are handled separately or don't have images in this flow usually, but we can add if needed.
+    // For simplicity, let's enable lightbox for the main menu categories first.
+
+    // Filter items that have images to create slides
+    const itemsWithImages = currentCategoryItems.filter(item => item.image);
+    const slides = itemsWithImages.map(item => ({ src: item.image! }));
+
+    const handleImageClick = (item: MenuItem) => {
+        if (!item.image) return;
+        const index = itemsWithImages.findIndex(i => i.image === item.image);
+        if (index >= 0) {
+            setLightboxIndex(index);
+        }
+    };
+
     const whatsappNumber = '+351939000735';
     const whatsappMessage = 'Olá! Gostaria de fazer uma reserva na Vulcanici Pizzeria.';
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -118,7 +143,11 @@ export default function Menu() {
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {menuCategories[activeCategory].items.map((item, index) => (
-                                <MenuCard key={index} item={item} />
+                                <MenuCard
+                                    key={index}
+                                    item={item}
+                                    onImageClick={() => handleImageClick(item)}
+                                />
                             ))}
                         </div>
                     </div>
@@ -365,6 +394,13 @@ export default function Menu() {
                     </div>
                 </div>
             </footer>
+            {/* Lightbox */}
+            <Lightbox
+                index={lightboxIndex}
+                slides={slides}
+                open={lightboxIndex >= 0}
+                close={() => setLightboxIndex(-1)}
+            />
         </div>
     );
 }
