@@ -82,7 +82,7 @@ export default function Menu() {
                         <img
                             src="/logo-vulcani.png"
                             alt="Vulcanici Pizzeria Napoletana"
-                            className="h-16 md:h-20 w-auto object-contain drop-shadow-sm"
+                            className="h-16 md:h-20 w-auto object-contain brightness-0"
                         />
                     </div>
 
@@ -384,7 +384,7 @@ export default function Menu() {
                             <img
                                 src="/logo-vulcani.png"
                                 alt="Vulcanici"
-                                className="h-12 w-auto opacity-50"
+                                className="h-12 w-auto opacity-50 brightness-0"
                             />
                         </div>
                     </div>

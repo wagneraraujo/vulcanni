@@ -53,7 +53,7 @@ export default function Home() {
                         <img
                             src="/logo-vulcani.png"
                             alt="Vulcanici Pizzeria Napoletana"
-                            className="h-24 md:h-32 lg:h-40 w-auto object-contain drop-shadow-md"
+                            className="h-24 md:h-32 lg:h-40 w-auto object-contain brightness-0"
                         />
                     </div>
 
