@@ -32,49 +32,49 @@ export const antipasti: MenuItem[] = [
         nome: "Tábua de Charcutaria Italiana / Italian Board",
         ingredientes: "Presunto de Parma, mortadela, salame Napoli, burrata, azeitona, parmesão, pão artesanal",
         preco: 16,
-        image: "/menu/antipasti/tabua-charcutaria.jpg"
+        image: "/galeria/DSC01855.jpg"
     },
     {
         nome: "Salada / Salad",
         ingredientes: "Rúcula, burrata, presunto de Parma, tomate, pesto, parmesão, pão artesanal",
         preco: 13,
-        image: "/menu/antipasti/salada.jpg"
+        image: "/galeria/DSC01862.jpg"
     },
     {
         nome: "Pão de Alho / Garlic Bread",
         ingredientes: "Azeite de alho, orégãos, mozzarella fior di latte",
         preco: 3.5,
-        image: "/menu/antipasti/pao-alho.jpg"
+        image: "/galeria/DSC01862.jpg"
     },
     {
         nome: "Montanara Bufalina",
         ingredientes: "Molho de tomate, mozzarella de bufala, parmesão, manjericão",
         preco: 4,
-        image: "/menu/antipasti/montanara-bufalina.jpg"
+        image: "/galeria/DSC02047.jpg"
     },
     {
         nome: "Montanara Mortadela",
         ingredientes: "Mortadela Bologna, stracciatella, granula de pistacchio, raspas de limão",
         preco: 4,
-        image: "/menu/antipasti/montanara-mortadela.jpg"
+        image: "/galeria/DSC02049.jpg"
     },
     {
         nome: "Montanara Presunto / Montanara Prosciutto",
         ingredientes: "Stracciatella, presunto de Parma, pesto, parmesão",
         preco: 4,
-        image: "/menu/antipasti/montanara-presunto.jpg"
+        image: "/galeria/DSC02052.jpg"
     },
     {
         nome: "Tris Montanara / Montanara Trio",
         ingredientes: "Bufalina, mortadela, presunto (não é possível alteração)",
         preco: 10,
-        image: "/menu/antipasti/tris-montanara.jpg"
+        image: "/galeria/DSC02055.jpg"
     },
     {
         nome: "Lasanha Bolognese / Lasagna Bolognese",
         ingredientes: "Massa fresca, ragù encorpado e molho béchamel cremoso",
         preco: 15,
-        image: "/menu/antipasti/lasanha.jpg"
+        image: "/galeria/DSC02068.jpg"
     }
 ];
 
@@ -83,32 +83,32 @@ export const leClassiche: MenuItem[] = [
         nome: "Bufalina",
         ingredientes: "Molho de tomate, mozzarella de bufala, manjericão, parmesão, azeite extra virgem",
         preco: 13,
-        image: "/menu/classiche/bufalina.jpg"
+        image: "/galeria/DSC01965.jpg"
     },
     {
         nome: "Napoletana",
         ingredientes: "Molho de tomate, orégãos, manjericão, parmesão, mozzarella fior di latte, anchova, azeite extra virgem",
         preco: 12,
-        image: "/menu/classiche/napoletana.jpg"
+        image: "/galeria/DSC01898.jpg"
     },
     {
         nome: "Romana",
         ingredientes: "Molho de tomate, fiambre, cogumelos salteados, azeitonas, manjericão, parmesão, mozzarella fior di latte, azeite extra virgem",
         preco: 13,
-        image: "/menu/classiche/romana.jpg"
+        image: "/galeria/DSC02024.jpg"
     },
     {
         nome: "Margherita",
         ingredientes: "Molho de tomate, manjericão, mozzarella fior di latte, parmesão, azeite extra virgem",
         preco: 11,
-        image: "/menu/classiche/margherita.jpg"
+        image: "/galeria/DSC01884.jpg"
     },
     {
         nome: "Quatro Formaggi / Quattro Formaggi",
         ingredientes: "Creme de parmesão, manjericão, mozzarella fior di latte, mozzarella defumada (provola), gorgonzola, azeite extra virgem",
         preco: 12,
         opcional: "Sugestão: creme de trufa +3",
-        image: "/menu/classiche/quattro-formaggi.jpg"
+        image: "/galeria/DSC01977.jpg"
     }
 ];
 
@@ -117,13 +117,13 @@ export const leSpecialita: MenuItem[] = [
         nome: "Pérola Nera",
         ingredientes: "Massa duas culturas (frita/forno), creme de trufa, mozzarella fior di latte, presunto de Parma, creme de ricota, pimenta preta",
         preco: 18,
-        image: "/menu/specialita/perola-nera.jpg"
+        image: "/galeria/DSC02197.jpg"
     },
     {
         nome: "Sofia Loren",
         ingredientes: "Molho de tomate, tomate amarelo, rúcula, mozzarella de bufala, lascas de parmesão, azeite extra virgem",
         preco: 14,
-        image: "/menu/specialita/sofia-loren.jpg"
+        image: "/galeria/DSC01937.jpg"
     },
     {
         nome: "D. Afonso Henriques",
@@ -135,49 +135,49 @@ export const leSpecialita: MenuItem[] = [
         nome: "VULCANICI",
         ingredientes: "Pepperoni picante, tomate amarelo, manjericão, parmesão, Nduja, mozzarella defumada (provola), azeite extra virgem",
         preco: 15,
-        image: "/menu/specialita/vulcanici.jpg"
+        image: "/galeria/DSC02097.jpg"
     },
     {
         nome: "Largo da Oliveira",
         ingredientes: "Mozzarella fior di latte, mortadela Bologna, manjericão, burrata, pesto de pistacchio, granula de pistacchio, raspas de limão",
         preco: 16,
-        image: "/menu/specialita/largo-oliveira.jpg"
+        image: "/galeria/DSC01997.jpg"
     },
     {
         nome: "Doce Armonia / Doce Armonia",
         ingredientes: "Creme de pistacchio, fiambre, cebola caramelizada, stracciatella, granula de pistacchio",
         preco: 16,
-        image: "/menu/specialita/doce-armonia.jpg"
+        image: "/galeria/DSC02087.jpg"
     },
     {
         nome: "Parmigiana",
         ingredientes: "Ragu napolitano, berinjela, manjericão, mozzarella defumada (provola), creme de bechamel",
         preco: 14,
-        image: "/menu/specialita/parmigiana.jpg"
+        image: "/galeria/DSC02144.jpg"
     },
     {
         nome: "O Ragù",
         ingredientes: "Carne desfiada glaceada no vinho tinto cozida no tomate lentamente, manjericão, mozzarella defumada (provola), parmesão, azeite extra virgem",
         preco: 15,
-        image: "/menu/specialita/ragu.jpg"
+        image: "/galeria/DSC02029.jpg"
     },
     {
         nome: "Totó",
         ingredientes: "Molho de tomate, mozzarella fior di latte, rúcula, presunto de Parma, lascas de parmesão, azeite extra virgem",
         preco: 14,
-        image: "/menu/specialita/toto.jpg"
+        image: "/galeria/DSC01909.jpg"
     },
     {
         nome: "Diavola do Mar",
         ingredientes: "Molho de tomate, Nduja, anchova, orégãos, parmesão, stracciatella, manjericão",
         preco: 15,
-        image: "/menu/specialita/diavola-mar.jpg"
+        image: "/galeria/DSC02125.jpg"
     },
     {
         nome: "Prosciutto & Mascarpone",
         ingredientes: "Molho de tomate, presunto de Parma, manjericão, parmesão, queijo mascarpone",
         preco: 16,
-        image: "/menu/specialita/prosciutto-mascarpone.jpg"
+        image: "/galeria/DSC02193.jpg"
     }
 ];
 
@@ -186,13 +186,13 @@ export const calzone: MenuItem[] = [
         nome: "Completo",
         ingredientes: "Ricota, salame Napoli, manjericão, mozzarella fior di latte, molho de tomate, parmesão, azeite extra virgem",
         preco: 13,
-        image: "/menu/calzone/completo.jpg"
+        image: "/galeria/DSC02162.jpg"
     },
     {
         nome: "Scarola",
         ingredientes: "Scarola, manjericão, azeitona, mozzarella defumada (provola), parmesão, azeite extra virgem",
         preco: 11,
-        image: "/menu/calzone/scarola.jpg"
+        image: "/galeria/DSC02157.jpg"
     }
 ];
 
