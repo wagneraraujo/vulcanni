@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Phone, Instagram, Facebook } from 'lucide-react';
+import { MapPin, Phone, Instagram, Facebook, ChevronRight } from 'lucide-react';
 import MenuCard from './MenuCard';
 import {
     menuCategories,
@@ -38,14 +38,10 @@ export default function Menu() {
     const [activeCategory, setActiveCategory] = useState(0);
     const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-    // Calculate slides for the current view (only items with images)
-    // We need to know which items have images to map the index correctly
     const currentCategoryItems = activeCategory < menuCategories.length
         ? menuCategories[activeCategory].items
-        : []; // Bebidas are handled separately or don't have images in this flow usually, but we can add if needed.
-    // For simplicity, let's enable lightbox for the main menu categories first.
+        : [];
 
-    // Filter items that have images to create slides
     const itemsWithImages = currentCategoryItems.filter(item => item.image);
     const slides = itemsWithImages.map(item => ({ src: item.image! }));
 
@@ -62,86 +58,84 @@ export default function Menu() {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
-        <div className="min-h-screen bg-background text-foreground">
-            {/* Floating WhatsApp Button */}
-            <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-lg hover:bg-green-600 hover:scale-110 transition-all duration-300"
-                aria-label="WhatsApp"
-            >
-                <WhatsAppIcon className="w-7 h-7 text-white" />
-            </a>
+        <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground">
 
-            {/* Header */}
-            <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
-                <div className="max-w-7xl mx-auto px-4 py-6">
-                    {/* Logo */}
-                    <div className="flex justify-center mb-4">
+            {/* Header / Navbar */}
+            <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-lg border-b border-border/50 shadow-sm transition-all duration-300">
+                <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+
+                    {/* Logo & Title */}
+                    <div className="flex items-center gap-4">
                         <img
                             src="/logo-vulcani.png"
-                            alt="Vulcanici Pizzeria Napoletana"
-                            className="h-16 md:h-20 w-auto object-contain brightness-0"
+                            alt="Vulcanici Pizzeria"
+                            className="h-12 w-auto object-contain brightness-0"
                         />
+                        <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-primary hidden md:block">
+                            Vulcanici
+                        </h1>
                     </div>
 
-                    {/* Restaurant Name */}
-                    <h1 className="text-center text-2xl md:text-3xl font-bold tracking-wide mb-4 text-primary">
-                        Vulcanici Pizzeria Napoletana
-                    </h1>
-
-                    {/* Unidades */}
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm">
+                    {/* Locations - Compact */}
+                    <div className="flex gap-6 text-sm text-muted-foreground hidden lg:flex">
                         {unidades.map((unidade, index) => (
-                            <div key={index} className="flex items-start gap-2">
-                                <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                                <div className="text-center md:text-left">
-                                    <p className="font-bold text-foreground text-base">{unidade.cidade}</p>
-                                    <p className="text-muted-foreground font-medium">{unidade.endereco}</p>
-                                </div>
+                            <div key={index} className="flex items-center gap-2">
+                                <MapPin className="w-4 h-4 text-accent" />
+                                <span>{unidade.cidade}</span>
                             </div>
                         ))}
+                    </div>
+
+                    {/* Contact CTA */}
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:text-accent transition-colors">
+                        Reservas: +351 939 000 735
+                    </a>
+                </div>
+
+                {/* Categories Navigation - Scrollable */}
+                <div className="bg-background/50 border-t border-border/50">
+                    <div className="max-w-7xl mx-auto px-4 py-3 overflow-x-auto no-scrollbar">
+                        <div className="flex gap-2 min-w-max">
+                            {menuCategories.map((category, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setActiveCategory(index)}
+                                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === index
+                                            ? 'bg-primary text-primary-foreground shadow-md scale-105'
+                                            : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
+                                        }`}
+                                >
+                                    {category.title}
+                                </button>
+                            ))}
+                            <button
+                                onClick={() => setActiveCategory(menuCategories.length)}
+                                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === menuCategories.length
+                                        ? 'bg-primary text-primary-foreground shadow-md scale-105'
+                                        : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
+                                    }`}
+                            >
+                                Bebidas & Vinhos
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
 
             {/* Main Content */}
-            <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
-                {/* Category Navigation */}
-                <div className="mb-8">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                        {menuCategories.map((category, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setActiveCategory(index)}
-                                className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-base transition-all duration-300 ${activeCategory === index
-                                    ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
-                                    }`}
-                            >
-                                {category.title}
-                            </button>
-                        ))}
-                        <button
-                            onClick={() => setActiveCategory(menuCategories.length)}
-                            className={`px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-base transition-all duration-300 ${activeCategory === menuCategories.length
-                                ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                                : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
-                                }`}
-                        >
-                            Bebidas
-                        </button>
-                    </div>
-                </div>
+            <main className="max-w-7xl mx-auto px-4 py-12 md:py-16 min-h-[calc(100vh-300px)]">
 
-                {/* Menu Items Grid */}
                 {activeCategory < menuCategories.length ? (
-                    <div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">
-                            {menuCategories[activeCategory].title}
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="animate-fade-in-up">
+                        <div className="text-center mb-12">
+                            <span className="text-accent font-serif italic text-lg opacity-80">Nossa Seleção de</span>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mt-2">
+                                {menuCategories[activeCategory].title}
+                            </h2>
+                            <div className="w-24 h-1 bg-accent mx-auto mt-6 rounded-full opacity-60" />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {menuCategories[activeCategory].items.map((item, index) => (
                                 <MenuCard
                                     key={index}
@@ -152,248 +146,102 @@ export default function Menu() {
                         </div>
                     </div>
                 ) : (
-                    /* Bebidas Section */
-                    <div className="space-y-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">
-                            Bebidas
-                        </h2>
-
-                        {/* Águas */}
-                        <div>
-                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
-                                Águas
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {aguas.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                    >
-                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                    </div>
-                                ))}
-                            </div>
+                    /* Bebidas Section - Modern List Layout */
+                    <div className="space-y-16 animate-fade-in-up max-w-5xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary">
+                                Rolha & Bar
+                            </h2>
+                            <p className="text-muted-foreground mt-4 font-light">Uma seleção curada para acompanhar sua experiência.</p>
                         </div>
 
-                        {/* Refrigerantes */}
-                        <div>
-                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
-                                Refrigerantes
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {refrigerantes.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                    >
-                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Cervejas */}
-                        <div>
-                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
-                                Cervejas
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {cervejas.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                    >
-                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Vinhos */}
-                        <div>
-                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
-                                Vinhos
-                            </h3>
-
-                            <div className="space-y-6">
-                                {/* Tinto */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-primary mb-3">Tinto</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {vinhosTinto.map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                            >
-                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Branco */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-primary mb-3">Branco</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {vinhosBranco.map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                            >
-                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Rosé */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-primary mb-3">Rosé</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {vinhosRose.map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                            >
-                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Espumante */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-primary mb-3">Espumante</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {espumante.map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                            >
-                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Sangria 1L */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-primary mb-3">Sangria 1L</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {sangria.map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                            >
-                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Ao Copo */}
-                                <div>
-                                    <h4 className="text-lg font-bold text-primary mb-3">Ao Copo</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {aoCopo.map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                            >
-                                                <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                                <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
+                        {/* Drink Categories */}
+                        {[
+                            { title: 'Vinhos Tinto', items: vinhosTinto },
+                            { title: 'Vinhos Branco', items: vinhosBranco },
+                            { title: 'Vinhos Rosé', items: vinhosRose },
+                            { title: 'Espumante & Sangria', items: [...espumante, ...sangria] },
+                            { title: 'Cervejas', items: cervejas },
+                            { title: 'Não Alcoólicos', items: [...aguas, ...refrigerantes] },
+                            { title: 'Café & Digestivos', items: [...cafeDigestivos, ...aoCopo] }
+                        ].map((category, idx) => (
+                            <div key={idx} className="bg-card rounded-2xl p-8 border border-border/40 shadow-sm hover:shadow-md transition-shadow">
+                                <h3 className="text-2xl font-serif font-bold text-primary mb-6 flex items-center gap-3">
+                                    {category.title}
+                                    <div className="h-px bg-border flex-1 opacity-50 ml-4" />
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+                                    {category.items.map((item, i) => (
+                                        <div key={i} className="flex justify-between items-baseline group border-b border-dashed border-border/30 pb-2">
+                                            <span className="text-foreground font-medium group-hover:text-primary transition-colors">{item.nome}</span>
+                                            <div className="border-b-2 border-dotted border-muted flex-1 mx-2 opacity-30" />
+                                            <span className="text-primary font-bold">€{item.preco.toFixed(2)}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Café e Digestivos */}
-                        <div>
-                            <h3 className="text-2xl font-bold mb-4 text-foreground border-b border-border pb-2">
-                                Café e Digestivos
-                            </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {cafeDigestivos.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex justify-between items-center bg-card border border-border rounded-lg p-4 hover:border-primary transition-all duration-300 shadow-sm"
-                                    >
-                                        <span className="text-foreground font-semibold text-base">{item.nome}</span>
-                                        <span className="text-primary font-bold text-lg">€{item.preco.toFixed(2)}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 )}
             </main>
 
             {/* Footer */}
-            <footer className="bg-secondary border-t border-border py-12 mt-16">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <footer className="bg-primary text-primary-foreground py-16 mt-20 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/bg-pizza.jpg')] bg-cover opacity-10 mix-blend-overlay" />
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                        {/* Brand */}
+                        <div className="text-center md:text-left space-y-4">
+                            <div className="flex items-center justify-center md:justify-start gap-4">
+                                <img src="/logo-vulcani.png" alt="Vulcanici" className="h-12 brightness-0 invert opacity-80" />
+                                <span className="font-serif text-xl font-bold">Vulcanici</span>
+                            </div>
+                            <p className="text-primary-foreground/60 text-sm max-w-xs mx-auto md:mx-0">
+                                A verdadeira tradição napolitana no coração de Guimarães. Ingredientes selecionados, paixão italiana.
+                            </p>
+                        </div>
+
                         {/* Contact */}
-                        <div>
-                            <h3 className="text-primary font-semibold mb-4">Contato</h3>
-                            <a
-                                href={whatsappUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 text-muted-foreground hover:text-green-600 transition-colors mb-2"
-                            >
-                                <Phone className="w-4 h-4" />
-                                <span>+351 939 000 735</span>
-                            </a>
+                        <div className="text-center space-y-4">
+                            <h4 className="font-serif text-xl font-bold text-accent">Contato</h4>
+                            <div className="space-y-2 text-primary-foreground/80">
+                                <p>R. Antero de Quental, 253</p>
+                                <p>+351 939 000 735</p>
+                                <p>Guimarães, Portugal</p>
+                            </div>
                         </div>
 
                         {/* Social */}
-                        <div>
-                            <h3 className="text-primary font-semibold mb-4">Redes Sociais</h3>
-                            <div className="flex gap-4">
-                                <a
-                                    href="https://www.instagram.com/vulcaniciguimaraes"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-muted-foreground hover:text-primary transition-colors"
-                                >
+                        <div className="text-center md:text-right space-y-4">
+                            <h4 className="font-serif text-xl font-bold text-accent">Siga-nos</h4>
+                            <div className="flex justify-center md:justify-end gap-6">
+                                <a href="https://www.instagram.com/vulcaniciguimaraes" className="hover:text-accent transition-colors">
                                     <Instagram className="w-6 h-6" />
                                 </a>
-                                <a
-                                    href="https://www.facebook.com/profile.php?id=61552967728211"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-muted-foreground hover:text-primary transition-colors"
-                                >
+                                <a href="https://www.facebook.com/profile.php?id=61552967728211" className="hover:text-accent transition-colors">
                                     <Facebook className="w-6 h-6" />
                                 </a>
                             </div>
                         </div>
-
-                        {/* Logo */}
-                        <div className="flex justify-center md:justify-end">
-                            <img
-                                src="/logo-vulcani.png"
-                                alt="Vulcanici"
-                                className="h-12 w-auto opacity-50 brightness-0"
-                            />
-                        </div>
                     </div>
 
-                    <div className="text-center text-muted-foreground text-sm">
+                    <div className="border-t border-primary-foreground/10 pt-8 text-center text-xs text-primary-foreground/40 uppercase tracking-widest">
                         <p>© {new Date().getFullYear()} Vulcanici Pizzeria Napoletana. Todos os direitos reservados.</p>
                     </div>
                 </div>
             </footer>
+
+            {/* Floating WhatsApp */}
+            <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg hover:bg-[#128C7E] hover:scale-110 transition-all duration-300"
+                aria-label="WhatsApp"
+            >
+                <WhatsAppIcon className="w-7 h-7 text-white" />
+            </a>
+
             {/* Lightbox */}
             <Lightbox
                 index={lightboxIndex}

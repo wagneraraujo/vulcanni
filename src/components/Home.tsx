@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import GallerySection from './ui/GallerySection';
 
 // WhatsApp Icon Component
-// WhatsApp Icon Component
 const WhatsAppIcon = ({ className }: { className?: string }) => (
     <svg
         viewBox="0 0 24 24"
@@ -21,16 +20,16 @@ export default function Home() {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
-        <div className="relative min-h-screen w-full bg-background overflow-x-hidden">
-            {/* Background Image - Fixed */}
+        <div className="relative min-h-screen w-full bg-background overflow-x-hidden selection:bg-accent selection:text-accent-foreground">
+            {/* Background Image - Cinematic & Fixed */}
             <div
-                className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+                className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none z-0"
                 style={{
                     backgroundImage: 'url(/bg-pizza.jpg)',
                 }}
             >
-                {/* Light overlay gradient - Vulcanici Theme */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/95" />
+                {/* Elegant Gradient Overlay - Lighter and warmer for the rustic feel */}
+                <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background/90" />
             </div>
 
             {/* Floating WhatsApp Button */}
@@ -38,123 +37,134 @@ export default function Home() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-lg hover:bg-green-600 hover:scale-110 transition-all duration-300 animate-fade-in"
+                className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-2xl hover:bg-[#128C7E] hover:scale-105 transition-all duration-300 animate-fade-in group"
                 aria-label="WhatsApp"
             >
-                <WhatsAppIcon className="w-7 h-7 text-white" />
+                <WhatsAppIcon className="w-8 h-8 text-white group-hover:rotate-12 transition-transform duration-300" />
             </a>
 
-            {/* HERO SECTION */}
-            <section className="relative h-screen w-full flex flex-col items-center justify-center px-6">
-                <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
+            {/* Main Content Container */}
+            <div className="relative z-10 w-full">
 
-                    {/* Logo */}
-                    <div className="animate-fade-in opacity-0-start mb-8">
-                        <img
-                            src="/logo-vulcani.png"
-                            alt="Vulcanici Pizzeria Napoletana"
-                            className="h-24 md:h-32 lg:h-40 w-auto object-contain brightness-0"
-                        />
+                {/* HERO SECTION */}
+                <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20">
+                    <div className="w-full max-w-5xl mx-auto flex flex-col items-center">
+
+                        {/* Logo - Center Stage with breathing room */}
+                        <div className="animate-fade-in opacity-0-start mb-12 transform hover:scale-105 transition-transform duration-700 ease-out">
+                            <img
+                                src="/logo-vulcani.png"
+                                alt="Vulcanici Pizzeria Napoletana"
+                                className="h-32 md:h-40 lg:h-48 w-auto object-contain brightness-0 opacity-90"
+                            />
+                        </div>
+
+                        {/* Typography - Serif Headline */}
+                        <h1 className="animate-fade-in-up opacity-0-start delay-200 text-center text-5xl md:text-7xl lg:text-8xl font-serif text-primary mb-6 leading-tight tracking-tight">
+                            Arte Napoletana
+                        </h1>
+
+                        {/* Subtitle - Sans Serif Modern */}
+                        <p className="animate-fade-in-up opacity-0-start delay-300 text-center text-lg md:text-xl text-muted-foreground font-light tracking-widest uppercase mb-12 max-w-2xl border-y border-border/40 py-4">
+                            Sabor Autêntico em Guimarães
+                        </p>
+
+                        {/* Narrative Paragraph */}
+                        <p className="animate-fade-in-up opacity-0-start delay-500 text-center text-base md:text-lg text-foreground/80 font-sans leading-relaxed max-w-3xl mb-12">
+                            Estamos a preparar uma nova experiência digital para si.
+                            Enquanto isso, convidamo-lo a descobrir a verdadeira essência da pizza napolitana,
+                            onde cada fatia conta uma história de tradição e paixão.
+                        </p>
+
+                        {/* CTA Button - Elegant & Minimal */}
+                        <Link
+                            to="/menu"
+                            className="animate-fade-in-up opacity-0-start delay-700 group relative px-10 py-5 bg-primary text-primary-foreground font-serif text-xl tracking-wide overflow-hidden rounded-sm transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20"
+                        >
+                            <span className="relative z-10 flex items-center gap-3">
+                                Ver Cardápio
+                                <ChevronDown className="w-5 h-5 -rotate-90 group-hover:translate-x-1 transition-transform" />
+                            </span>
+                            <div className="absolute inset-0 bg-primary-foreground/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                        </Link>
+
                     </div>
+                </section>
 
-                    {/* Main Title */}
-                    <h1 className="animate-fade-in-up opacity-0-start delay-200 text-center text-4xl md:text-5xl lg:text-6xl font-light tracking-wide text-primary mb-4">
-                        Site em Desenvolvimento
-                    </h1>
+                {/* INFO / CONTACT SECTION - "Card" Style */}
+                <section className="px-6 pb-20">
+                    <div className="max-w-4xl mx-auto bg-card/80 backdrop-blur-md border border-border/50 rounded-xl p-8 md:p-12 shadow-xl animate-fade-in-up delay-1000">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
 
-                    {/* Subtitle */}
-                    <p className="animate-fade-in-up opacity-0-start delay-300 text-center text-lg md:text-xl text-muted-foreground font-light tracking-wider mb-12 max-w-2xl">
-                        Estamos preparando algo especial para você.
-                        <br />
-                        <span className="text-foreground font-medium">Em breve, nossa nova experiência digital.</span>
-                    </p>
+                            {/* Address */}
+                            <div className="flex flex-col items-center md:items-start gap-2">
+                                <div className="flex items-center gap-2 text-accent">
+                                    <MapPin className="w-5 h-5" />
+                                    <span className="font-serif text-lg text-primary">Localização</span>
+                                </div>
+                                <div className="text-muted-foreground">
+                                    <p>R. Antero de Quental, 253</p>
+                                    <p>4810-026 Guimarães, Portugal</p>
+                                </div>
+                            </div>
 
-                    {/* Divider */}
-                    <div className="animate-fade-in opacity-0-start delay-500 w-24 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent mb-12" />
+                            {/* Divider Mobile */}
+                            <div className="w-24 h-px bg-border md:hidden" />
 
-                    {/* Menu Button */}
-                    <Link
-                        to="/menu"
-                        className="animate-fade-in-up opacity-0-start delay-600 px-8 py-4 bg-gradient-to-r from-[#2B5B9E] to-[#1A3A6B] hover:from-[#1A3A6B] hover:to-[#2B5B9E] text-white font-semibold text-lg rounded-full shadow-lg hover:shadow-xl hover:shadow-[#2B5B9E]/30 hover:scale-105 transition-all duration-300 mb-8"
-                    >
-                        Ver Cardápio Completo
-                    </Link>
+                            {/* Contact */}
+                            <div className="flex flex-col items-center md:items-start gap-2">
+                                <div className="flex items-center gap-2 text-accent">
+                                    <Phone className="w-5 h-5" />
+                                    <span className="font-serif text-lg text-primary">Reservas</span>
+                                </div>
+                                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                                    +351 939 000 735
+                                </a>
+                            </div>
 
-                    {/* Contact Info */}
-                    <div className="animate-fade-in-up opacity-0-start delay-700 flex flex-col items-center gap-4 mb-8 text-muted-foreground">
-                        {/* Address */}
-                        <div className="flex items-start gap-3 text-center">
-                            <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                            <div className="text-sm md:text-base tracking-wide">
-                                <p>R. Antero de Quental, 253</p>
-                                <p>4810-026 Guimarães, Portugal</p>
+                            {/* Divider Mobile */}
+                            <div className="w-24 h-px bg-border md:hidden" />
+
+                            {/* Social */}
+                            <div className="flex gap-6">
+                                <a
+                                    href="https://www.instagram.com/vulcaniciguimaraes"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-muted-foreground hover:text-accent hover:scale-110 transition-all duration-300"
+                                    aria-label="Instagram"
+                                >
+                                    <Instagram className="w-6 h-6" />
+                                </a>
+                                <a
+                                    href="https://www.facebook.com/profile.php?id=61552967728211"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-muted-foreground hover:text-accent hover:scale-110 transition-all duration-300"
+                                    aria-label="Facebook"
+                                >
+                                    <Facebook className="w-6 h-6" />
+                                </a>
                             </div>
                         </div>
-                        {/* Phone/WhatsApp */}
-                        <a
-                            href={whatsappUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-3 hover:text-green-600 transition-colors"
-                        >
-                            <Phone className="w-5 h-5 text-green-600 flex-shrink-0" />
-                            <span className="text-sm md:text-base tracking-wide">+351 939 000 735</span>
-                        </a>
                     </div>
+                </section>
 
-                    {/* Social Links */}
-                    <div className="animate-fade-in-up opacity-0-start delay-1000 flex items-center gap-8 mb-8">
-                        <a
-                            href="https://www.instagram.com/vulcaniciguimaraes"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-icon flex items-center gap-2 text-muted-foreground hover:text-accent"
-                            aria-label="Instagram"
-                        >
-                            <Instagram className="w-6 h-6" />
-                            <span className="hidden md:inline text-sm tracking-wider">Instagram</span>
-                        </a>
-                        <a
-                            href="https://www.facebook.com/profile.php?id=61552967728211"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-icon flex items-center gap-2 text-muted-foreground hover:text-accent"
-                            aria-label="Facebook"
-                        >
-                            <Facebook className="w-6 h-6" />
-                            <span className="hidden md:inline text-sm tracking-wider">Facebook</span>
-                        </a>
+                {/* GALLERY PREVIEW */}
+                <section className="bg-secondary/50 py-20 border-t border-border/50">
+                    <GallerySection />
+                </section>
+
+                {/* FOOTER */}
+                <footer className="w-full bg-primary text-primary-foreground py-12 text-center">
+                    <div className="animate-pulse-slow mb-4">
+                        <img src="/logo-vulcani.png" alt="Vulcanici" className="h-16 w-auto mx-auto object-contain brightness-0 invert opacity-40" />
                     </div>
-
-                    {/* Gallery CTA Button */}
-                    <button
-                        onClick={() => {
-                            const gallerySection = document.querySelector('section.py-20');
-                            gallerySection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }}
-                        className="animate-fade-in-up opacity-0-start delay-1200 px-8 py-3 bg-gradient-to-r from-accent to-[#D4A517] hover:from-[#D4A517] hover:to-accent text-white font-medium rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2 mb-16"
-                    >
-                        <span>Ver Nossa Galeria</span>
-                        <ChevronDown className="w-5 h-5" />
-                    </button>
-
-                    {/* Scroll Indicator */}
-                    <div className="animate-bounce absolute bottom-8">
-                        <ChevronDown className="w-8 h-8 text-primary/50" />
-                    </div>
-
-                </div>
-            </section>
-
-            {/* GALLERY SECTION */}
-            <GallerySection />
-
-            {/* Footer */}
-            <footer className="w-full bg-secondary py-8 border-t border-border text-center relative z-10">
-                <p className="text-muted-foreground text-xs tracking-widest uppercase">
-                    Vulcanici Pizzeria Napoletana © {new Date().getFullYear()}
-                </p>
-            </footer>
+                    <p className="text-primary-foreground/60 text-xs tracking-[0.2em] uppercase font-sans">
+                        Vulcanici Pizzeria Napoletana © {new Date().getFullYear()}
+                    </p>
+                </footer>
+            </div>
         </div>
     );
 }

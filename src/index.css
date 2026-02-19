@@ -1,48 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Vulcanici Theme - Light Mode */
-  --background: 0 0% 100%; /* #FFFFFF */
-  --foreground: 217 32% 15%; /* #1A2332 */
+  /* Vulcanici Theme - Modern Rustic Italian */
+  --background: 0 0% 98%;
+  /* #FAFAFA - Slightly off-white for warmth */
+  --foreground: 217 32% 15%;
+  /* #1A2332 - Deep Navy */
 
-  --card: 0 0% 100%; /* #FFFFFF */
-  --card-foreground: 217 32% 15%; /* #1A2332 */
+  --card: 0 0% 100%;
+  /* #FFFFFF */
+  --card-foreground: 217 32% 15%;
 
-  --popover: 0 0% 100%; /* #FFFFFF */
-  --popover-foreground: 217 32% 15%; /* #1A2332 */
+  --popover: 0 0% 100%;
+  --popover-foreground: 217 32% 15%;
 
-  --primary: 215 57% 39%; /* #2B5B9E */
-  --primary-foreground: 0 0% 100%; /* #FFFFFF */
+  --primary: 215 57% 39%;
+  /* #2B5B9E - Vulcanici Blue */
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 17% 98%; /* #F8F9FA */
-  --secondary-foreground: 215 57% 39%; /* #2B5B9E - Using primary for text on secondary */
+  --secondary: 210 20% 96%;
+  /* #F1F5F9 - Very light cool gray */
+  --secondary-foreground: 215 57% 39%;
 
-  --muted: 210 29% 93%; /* #E8EEF4 */
-  --muted-foreground: 209 16% 42%; /* #5A6C7D */
+  --muted: 210 20% 96%;
+  --muted-foreground: 215 20% 45%;
+  /* Softer gray for subtitles */
 
-  --accent: 48 89% 60%; /* #F4D03F */
-  --accent-foreground: 217 32% 15%; /* #1A2332 */
+  --accent: 48 89% 60%;
+  /* #F4D03F - Gold */
+  --accent-foreground: 217 32% 15%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 209 45% 77%; /* #A8C5E0 */
-  --input: 209 45% 77%; /* #A8C5E0 */
-  --ring: 215 57% 39%; /* #2B5B9E */
+  --border: 215 20% 90%;
+  /* Subtle styling borders */
+  --input: 215 20% 90%;
+  --ring: 215 57% 39%;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
+  /* Slightly more rounded for modern feel */
 }
 
-* {
-  border-color: hsl(var(--border));
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
 }
 
 /* Custom scrollbar */
@@ -69,6 +92,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -79,15 +103,19 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.7;
   }
@@ -106,12 +134,29 @@ body {
 }
 
 /* Delay classes */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-1000 { animation-delay: 1s; }
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
 
 /* Initial state for animations */
 .opacity-0-start {
