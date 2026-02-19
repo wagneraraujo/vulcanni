@@ -38,7 +38,7 @@ export const antipasti: MenuItem[] = [
         nome: "Salada / Salad",
         ingredientes: "Rúcula, burrata, presunto de Parma, tomate, pesto, parmesão, pão artesanal",
         preco: 13,
-        image: "/galeria/DSC01862.jpg"
+        image: ""
     },
     {
         nome: "Pão de Alho / Garlic Bread",

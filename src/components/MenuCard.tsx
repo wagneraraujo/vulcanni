@@ -9,32 +9,28 @@ interface MenuCardProps {
 export default function MenuCard({ item, onImageClick }: MenuCardProps) {
     return (
         <div className="group relative bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 flex flex-col h-full">
-            {/* Image Section */}
-            <div
-                className="relative h-64 overflow-hidden cursor-pointer"
-                onClick={onImageClick}
-            >
-                {item.image ? (
+            {/* Image Section - Only render if image exists */}
+            {item.image && (
+                <div
+                    className="relative h-64 overflow-hidden cursor-pointer"
+                    onClick={onImageClick}
+                >
                     <img
                         src={item.image}
                         alt={item.nome}
                         className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                         loading="lazy"
                     />
-                ) : (
-                    <div className="w-full h-full bg-muted flex items-center justify-center">
-                        <span className="text-muted-foreground font-serif italic text-lg opacity-50">Vulcanici</span>
+
+                    {/* Overlay Gradient on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Zoom Icon */}
+                    <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        <Plus className="w-5 h-5 text-white" />
                     </div>
-                )}
-
-                {/* Overlay Gradient on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Zoom Icon */}
-                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    <Plus className="w-5 h-5 text-white" />
                 </div>
-            </div>
+            )}
 
             {/* Content Section */}
             <div className="p-6 flex flex-col flex-1">

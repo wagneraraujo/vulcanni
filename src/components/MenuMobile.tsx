@@ -4,6 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { ChevronDown } from "lucide-react";
 import MenuCard from './MenuCard';
 import {
     menuCategories,
@@ -51,7 +52,7 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
             <Accordion type="single" collapsible className="w-full space-y-4">
                 {menuCategories.map((category, index) => (
                     <AccordionItem key={index} value={`item-${index}`} className="border rounded-xl bg-card overflow-hidden shadow-sm">
-                        <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden">
+                        <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden [&>svg]:hidden">
                             {/* Background Image */}
                             <div className="absolute inset-0 z-0">
                                 <img
@@ -64,10 +65,13 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                             </div>
 
                             {/* Text Content */}
-                            <div className="relative z-10 w-full px-6 flex items-center justify-between">
-                                <span className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-md text-left">
+                            <div className="relative z-10 w-full px-6 flex items-center justify-between gap-3 mt-8">
+                                <span className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-md text-center">
                                     {category.title}
                                 </span>
+                                <div className="bg-white/20 backdrop-blur-md p-2 rounded-full border border-white/30 shadow-lg transition-transform duration-300 group-data-[state=open]:rotate-180">
+                                    <ChevronDown className="w-6 h-6 text-white" />
+                                </div>
                             </div>
                         </AccordionTrigger>
                         <AccordionContent className="px-4 pb-6 pt-2">
@@ -87,7 +91,7 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
 
                 {/* Bebidas Section */}
                 <AccordionItem value="bebidas" className="border rounded-xl bg-card overflow-hidden shadow-sm">
-                    <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden">
+                    <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden [&>svg]:hidden">
                         {/* Background Image */}
                         <div className="absolute inset-0 z-0">
                             <img
@@ -102,10 +106,13 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                         </div>
 
                         {/* Text Content */}
-                        <div className="relative z-10 w-full px-6 flex items-center justify-between">
-                            <span className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-md text-left">
+                        <div className="relative z-10 w-full px-6 flex items-center justify-center gap-3">
+                            <span className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-md text-center">
                                 Bebidas & Vinhos
                             </span>
+                            <div className="bg-white/20 backdrop-blur-md p-2 rounded-full border border-white/30 shadow-lg transition-transform duration-300 group-data-[state=open]:rotate-180">
+                                <ChevronDown className="w-6 h-6 text-white" />
+                            </div>
                         </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-4 pb-6 pt-2">
