@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Phone, Instagram, Facebook, ChevronRight } from 'lucide-react';
+import { MapPin, Instagram, Facebook } from 'lucide-react';
 import MenuCard from './MenuCard';
+import MenuMobile from './MenuMobile';
 import {
     menuCategories,
     unidades,
@@ -60,6 +61,8 @@ export default function Menu() {
     return (
         <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground">
 
+
+
             {/* Header / Navbar */}
             <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-lg border-b border-border/50 shadow-sm transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -74,6 +77,10 @@ export default function Menu() {
                         <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-primary hidden md:block">
                             Vulcanici
                         </h1>
+                        {/* Mobile Title */}
+                        <h1 className="font-serif text-xl font-bold tracking-tight text-primary md:hidden block">
+                            Menu
+                        </h1>
                     </div>
 
                     {/* Locations - Compact */}
@@ -87,13 +94,13 @@ export default function Menu() {
                     </div>
 
                     {/* Contact CTA */}
-                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:text-accent transition-colors">
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:text-accent transition-colors hidden md:block">
                         Reservas: +351 939 000 735
                     </a>
                 </div>
 
-                {/* Categories Navigation - Scrollable */}
-                <div className="bg-background/50 border-t border-border/50">
+                {/* Categories Navigation - Tabs (Desktop Only) */}
+                <div className="bg-background/50 border-t border-border/50 hidden md:block">
                     <div className="max-w-7xl mx-auto px-4 py-3 overflow-x-auto no-scrollbar">
                         <div className="flex gap-2 min-w-max">
                             {menuCategories.map((category, index) => (
@@ -101,8 +108,8 @@ export default function Menu() {
                                     key={index}
                                     onClick={() => setActiveCategory(index)}
                                     className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === index
-                                            ? 'bg-primary text-primary-foreground shadow-md scale-105'
-                                            : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
+                                        ? 'bg-primary text-primary-foreground shadow-md scale-105'
+                                        : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
                                         }`}
                                 >
                                     {category.title}
@@ -111,8 +118,8 @@ export default function Menu() {
                             <button
                                 onClick={() => setActiveCategory(menuCategories.length)}
                                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === menuCategories.length
-                                        ? 'bg-primary text-primary-foreground shadow-md scale-105'
-                                        : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
+                                    ? 'bg-primary text-primary-foreground shadow-md scale-105'
+                                    : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
                                     }`}
                             >
                                 Bebidas & Vinhos
@@ -123,66 +130,74 @@ export default function Menu() {
             </header>
 
             {/* Main Content */}
-            <main className="max-w-7xl mx-auto px-4 py-12 md:py-16 min-h-[calc(100vh-300px)]">
+            <main className="max-w-7xl mx-auto px-4 py-6 md:py-16 min-h-[calc(100vh-300px)]">
 
-                {activeCategory < menuCategories.length ? (
-                    <div className="animate-fade-in-up">
-                        <div className="text-center mb-12">
-                            <span className="text-accent font-serif italic text-lg opacity-80">Nossa Seleção de</span>
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mt-2">
-                                {menuCategories[activeCategory].title}
-                            </h2>
-                            <div className="w-24 h-1 bg-accent mx-auto mt-6 rounded-full opacity-60" />
+                {/* Mobile Menu (Accordion) */}
+                <div className="md:hidden">
+                    <MenuMobile onImageClick={handleImageClick} />
+                </div>
+
+                {/* Desktop Menu (Tabs) */}
+                <div className="hidden md:block">
+                    {activeCategory < menuCategories.length ? (
+                        <div className="animate-fade-in-up">
+                            <div className="text-center mb-12">
+                                <span className="text-accent font-serif italic text-lg opacity-80">Nossa Seleção de</span>
+                                <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mt-2">
+                                    {menuCategories[activeCategory].title}
+                                </h2>
+                                <div className="w-24 h-1 bg-accent mx-auto mt-6 rounded-full opacity-60" />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {menuCategories[activeCategory].items.map((item, index) => (
+                                    <MenuCard
+                                        key={index}
+                                        item={item}
+                                        onImageClick={() => handleImageClick(item)}
+                                    />
+                                ))}
+                            </div>
                         </div>
+                    ) : (
+                        /* Bebidas Section - Modern List Layout */
+                        <div className="space-y-16 animate-fade-in-up max-w-5xl mx-auto">
+                            <div className="text-center mb-12">
+                                <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary">
+                                    Rolha & Bar
+                                </h2>
+                                <p className="text-muted-foreground mt-4 font-light">Uma seleção curada para acompanhar sua experiência.</p>
+                            </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {menuCategories[activeCategory].items.map((item, index) => (
-                                <MenuCard
-                                    key={index}
-                                    item={item}
-                                    onImageClick={() => handleImageClick(item)}
-                                />
+                            {/* Drink Categories */}
+                            {[
+                                { title: 'Vinhos Tinto', items: vinhosTinto },
+                                { title: 'Vinhos Branco', items: vinhosBranco },
+                                { title: 'Vinhos Rosé', items: vinhosRose },
+                                { title: 'Espumante & Sangria', items: [...espumante, ...sangria] },
+                                { title: 'Cervejas', items: cervejas },
+                                { title: 'Não Alcoólicos', items: [...aguas, ...refrigerantes] },
+                                { title: 'Café & Digestivos', items: [...cafeDigestivos, ...aoCopo] }
+                            ].map((category, idx) => (
+                                <div key={idx} className="bg-card rounded-2xl p-8 border border-border/40 shadow-sm hover:shadow-md transition-shadow">
+                                    <h3 className="text-2xl font-serif font-bold text-primary mb-6 flex items-center gap-3">
+                                        {category.title}
+                                        <div className="h-px bg-border flex-1 opacity-50 ml-4" />
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+                                        {category.items.map((item, i) => (
+                                            <div key={i} className="flex justify-between items-baseline group border-b border-dashed border-border/30 pb-2">
+                                                <span className="text-foreground font-medium group-hover:text-primary transition-colors">{item.nome}</span>
+                                                <div className="border-b-2 border-dotted border-muted flex-1 mx-2 opacity-30" />
+                                                <span className="text-primary font-bold">€{item.preco.toFixed(2)}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             ))}
                         </div>
-                    </div>
-                ) : (
-                    /* Bebidas Section - Modern List Layout */
-                    <div className="space-y-16 animate-fade-in-up max-w-5xl mx-auto">
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary">
-                                Rolha & Bar
-                            </h2>
-                            <p className="text-muted-foreground mt-4 font-light">Uma seleção curada para acompanhar sua experiência.</p>
-                        </div>
-
-                        {/* Drink Categories */}
-                        {[
-                            { title: 'Vinhos Tinto', items: vinhosTinto },
-                            { title: 'Vinhos Branco', items: vinhosBranco },
-                            { title: 'Vinhos Rosé', items: vinhosRose },
-                            { title: 'Espumante & Sangria', items: [...espumante, ...sangria] },
-                            { title: 'Cervejas', items: cervejas },
-                            { title: 'Não Alcoólicos', items: [...aguas, ...refrigerantes] },
-                            { title: 'Café & Digestivos', items: [...cafeDigestivos, ...aoCopo] }
-                        ].map((category, idx) => (
-                            <div key={idx} className="bg-card rounded-2xl p-8 border border-border/40 shadow-sm hover:shadow-md transition-shadow">
-                                <h3 className="text-2xl font-serif font-bold text-primary mb-6 flex items-center gap-3">
-                                    {category.title}
-                                    <div className="h-px bg-border flex-1 opacity-50 ml-4" />
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-                                    {category.items.map((item, i) => (
-                                        <div key={i} className="flex justify-between items-baseline group border-b border-dashed border-border/30 pb-2">
-                                            <span className="text-foreground font-medium group-hover:text-primary transition-colors">{item.nome}</span>
-                                            <div className="border-b-2 border-dotted border-muted flex-1 mx-2 opacity-30" />
-                                            <span className="text-primary font-bold">€{item.preco.toFixed(2)}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
+                    )}
+                </div>
             </main>
 
             {/* Footer */}

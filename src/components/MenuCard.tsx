@@ -48,7 +48,7 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                 </div>
 
                 <p className="text-muted-foreground text-sm font-light leading-relaxed mb-6 flex-1">
-                    {item.descricao}
+                    {item.ingredientes}
                 </p>
 
                 {/* Decorative Line */}
