@@ -106,7 +106,7 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                         </div>
 
                         {/* Text Content */}
-                        <div className="relative z-10 w-full px-6 flex items-center justify-center gap-3">
+                        <div className="relative z-10 w-full px-6 flex items-center justify-between gap-3 mt-8">
                             <span className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-md text-center">
                                 Bebidas & Vinhos
                             </span>

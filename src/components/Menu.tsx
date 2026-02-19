@@ -64,7 +64,8 @@ export default function Menu() {
 
 
             {/* Header / Navbar */}
-            <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-lg border-b border-border/50 shadow-sm transition-all duration-300">
+            {/* Header / Navbar */}
+            <header className="sticky top-0 z-40 bg-vulcanici-primary backdrop-blur-lg shadow-md transition-all duration-300 border-b border-white/10">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
 
                     {/* Logo & Title */}
@@ -72,29 +73,26 @@ export default function Menu() {
                         <img
                             src="/logo-vulcani.png"
                             alt="Vulcanici Pizzeria"
-                            className="h-12 w-auto object-contain brightness-0"
+                            className="h-12 w-auto object-contain brightness-0 invert"
                         />
-                        <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-primary hidden md:block">
+                        <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-white hidden md:block">
                             Vulcanici
                         </h1>
-                        {/* Mobile Title */}
-                        <h1 className="font-serif text-xl font-bold tracking-tight text-primary md:hidden block">
-                            Menu
-                        </h1>
+
                     </div>
 
                     {/* Locations - Compact */}
-                    <div className="flex gap-6 text-sm text-muted-foreground hidden lg:flex">
+                    <div className="flex gap-6 text-sm text-white/80 hidden lg:flex">
                         {unidades.map((unidade, index) => (
                             <div key={index} className="flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-accent" />
+                                <MapPin className="w-4 h-4 text-vulcanici-accent-yellow" />
                                 <span>{unidade.cidade}</span>
                             </div>
                         ))}
                     </div>
 
                     {/* Contact CTA */}
-                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:text-accent transition-colors hidden md:block">
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-white hover:text-vulcanici-accent-yellow transition-colors hidden md:block">
                         Reservas: +351 939 000 735
                     </a>
                 </div>
