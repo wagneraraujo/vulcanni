@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { type MenuItem } from '../data/menuData';
 import { Plus } from 'lucide-react';
 
@@ -7,10 +8,12 @@ interface MenuCardProps {
 }
 
 export default function MenuCard({ item, onImageClick }: MenuCardProps) {
+    const [imageError, setImageError] = useState(false);
+
     return (
         <div className="group relative bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 flex flex-col h-full">
-            {/* Image Section - Only render if image exists */}
-            {item.image && (
+            {/* Image Section - Only render if image exists and no error occurred */}
+            {item.image && !imageError && (
                 <div
                     className="relative h-64 overflow-hidden cursor-pointer"
                     onClick={onImageClick}
@@ -20,6 +23,7 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                         alt={item.nome}
                         className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                         loading="lazy"
+                        onError={() => setImageError(true)}
                     />
 
                     {/* Overlay Gradient on Hover */}
