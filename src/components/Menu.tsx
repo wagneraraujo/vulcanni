@@ -83,9 +83,6 @@ export default function Menu() {
                             alt="Vulcanici Pizzeria"
                             className="h-12 w-auto object-contain brightness-0 invert"
                         />
-                        <h1 className="font-serif text-xl md:text-2xl font-bold tracking-tight text-white hidden md:block">
-                            Vulcanici
-                        </h1>
 
                     </div>
 
@@ -225,10 +222,20 @@ export default function Menu() {
                         {/* Contact */}
                         <div className="text-center space-y-4">
                             <h4 className="font-serif text-xl font-bold text-accent">Contato</h4>
-                            <div className="space-y-2 text-primary-foreground/80">
-                                <p>R. Antero de Quental, 253</p>
-                                <p>+351 939 000 735</p>
-                                <p>Guimarães, Portugal</p>
+                            <div className="space-y-4">
+                                <div>
+                                    <p className="font-bold text-white">Guimarães</p>
+                                    <p>R. Antero de Quental, 253</p>
+                                    <p>4810-026 Guimarães</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-white">Porto</p>
+                                    <p>Rua de Faria Guimarães 275</p>
+                                    <p>Santo Ildefonso 4000-206 Porto</p>
+                                </div>
+                                <div className="pt-2 text-vulcanici-accent-yellow font-bold">
+                                    <p>+351 939 000 735</p>
+                                </div>
                             </div>
                         </div>
 

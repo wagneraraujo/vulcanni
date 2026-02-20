@@ -18,11 +18,11 @@ export interface Unidade {
 
 export const unidades: Unidade[] = [
     {
-        endereco: "R. Antero de Quental, 253, 4810-026 Guimarães",
+        endereco: "R. Antero de Quental 253, 4810-026 Guimarães",
         cidade: "Guimarães"
     },
     {
-        endereco: "Rua de Faria Guimarães 275, Santo Ildefonso 4000-206 Porto",
+        endereco: "Rua de Faria Guimarães 275 Santo Ildefonso 4000-206 Porto",
         cidade: "Porto"
     }
 ];

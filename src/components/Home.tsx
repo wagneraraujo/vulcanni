@@ -51,7 +51,7 @@ export default function Home() {
                     <div className="w-full max-w-5xl mx-auto flex flex-col items-center">
 
                         {/* Logo - Center Stage with breathing room */}
-                        <div className="animate-fade-in opacity-0-start mb-12 transform hover:scale-105 transition-transform duration-700 ease-out">
+                        <div className="animate-fade-in-up opacity-0-start mb-12 transform hover:scale-105 transition-transform duration-700 ease-out">
                             <img
                                 src="/logo-vulcani.png"
                                 alt="Vulcanici Pizzeria Napoletana"
@@ -66,7 +66,7 @@ export default function Home() {
 
                         {/* Subtitle - Sans Serif Modern */}
                         <p className="animate-fade-in-up opacity-0-start delay-300 text-center text-lg md:text-xl text-muted-foreground font-light tracking-widest uppercase mb-12 max-w-2xl border-y border-border/40 py-4">
-                            Sabor Autêntico em Guimarães
+                            Sabor Autêntico em Guimarães e  Porto
                         </p>
 
                         {/* Narrative Paragraph */}
@@ -82,7 +82,7 @@ export default function Home() {
                             className="animate-fade-in-up opacity-0-start delay-700 group relative px-10 py-5 bg-primary text-primary-foreground font-serif text-xl tracking-wide overflow-hidden rounded-sm transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20"
                         >
                             <span className="relative z-10 flex items-center gap-3">
-                                Ver Cardápio
+                                Menù
                                 <ChevronDown className="w-5 h-5 -rotate-90 group-hover:translate-x-1 transition-transform" />
                             </span>
                             <div className="absolute inset-0 bg-primary-foreground/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -102,9 +102,17 @@ export default function Home() {
                                     <MapPin className="w-5 h-5" />
                                     <span className="font-serif text-lg text-primary">Localização</span>
                                 </div>
-                                <div className="text-muted-foreground">
-                                    <p>R. Antero de Quental, 253</p>
-                                    <p>4810-026 Guimarães, Portugal</p>
+                                <div className="space-y-4">
+                                    <div>
+                                        <p className="font-medium text-foreground">Guimarães</p>
+                                        <p>R. Antero de Quental, 253</p>
+                                        <p>4810-026 Guimarães</p>
+                                    </div>
+                                    <div>
+                                        <p className="font-medium text-foreground">Porto</p>
+                                        <p>Rua de Faria Guimarães 275</p>
+                                        <p>Santo Ildefonso 4000-206 Porto</p>
+                                    </div>
                                 </div>
                             </div>
 
