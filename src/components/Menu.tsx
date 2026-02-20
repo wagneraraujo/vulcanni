@@ -212,7 +212,6 @@ export default function Menu() {
                         <div className="text-center md:text-left space-y-4">
                             <div className="flex items-center justify-center md:justify-start gap-4">
                                 <img src="/logo-vulcani.png" alt="Vulcanici" className="h-12 brightness-0 invert opacity-80" />
-                                <span className="font-serif text-xl font-bold">Vulcanici</span>
                             </div>
                             <p className="text-primary-foreground/60 text-sm max-w-xs mx-auto md:mx-0">
                                 A verdadeira tradição napolitana no coração de Guimarães. Ingredientes selecionados, paixão italiana.
