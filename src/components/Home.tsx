@@ -25,7 +25,7 @@ export default function Home() {
             <div
                 className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none z-0"
                 style={{
-                    backgroundImage: 'url(/bg-pizza.jpg)',
+                    backgroundImage: 'url(/galeria/DSC01888.jpg)',
                 }}
             >
                 {/* Elegant Gradient Overlay - Lighter and warmer for the rustic feel */}
@@ -55,7 +55,7 @@ export default function Home() {
                             <img
                                 src="/logo-vulcani.png"
                                 alt="Vulcanici Pizzeria Napoletana"
-                                className="h-32 md:h-40 lg:h-48 w-auto object-contain brightness-0 opacity-90"
+                                className="h-32 md:h-40 lg:h-48 w-auto object-contain opacity-90"
                             />
                         </div>
 
