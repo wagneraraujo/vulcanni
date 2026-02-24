@@ -29,7 +29,7 @@ export default function Home() {
                 }}
             >
                 {/* Elegant Gradient Overlay - Lighter and warmer for the rustic feel */}
-                <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background/90" />
+                <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background/90" />
             </div>
 
             {/* Floating WhatsApp Button */}
@@ -92,71 +92,7 @@ export default function Home() {
                 </section>
 
                 {/* INFO / CONTACT SECTION - "Card" Style */}
-                <section className="px-6 pb-20">
-                    <div className="max-w-4xl mx-auto bg-card/80 backdrop-blur-md border border-border/50 rounded-xl p-8 md:p-12 shadow-xl animate-fade-in-up delay-1000">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
 
-                            {/* Address */}
-                            <div className="flex flex-col items-center md:items-start gap-2">
-                                <div className="flex items-center gap-2 text-accent">
-                                    <MapPin className="w-5 h-5" />
-                                    <span className="font-serif text-lg text-primary">Localização</span>
-                                </div>
-                                <div className="space-y-4">
-                                    <div>
-                                        <p className="font-medium text-foreground">Guimarães</p>
-                                        <p>R. Antero de Quental, 253</p>
-                                        <p>4810-026 Guimarães</p>
-                                    </div>
-                                    <div>
-                                        <p className="font-medium text-foreground">Porto</p>
-                                        <p>Rua de Faria Guimarães 275</p>
-                                        <p>Santo Ildefonso 4000-206 Porto</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Divider Mobile */}
-                            <div className="w-24 h-px bg-border md:hidden" />
-
-                            {/* Contact */}
-                            <div className="flex flex-col items-center md:items-start gap-2">
-                                <div className="flex items-center gap-2 text-accent">
-                                    <Phone className="w-5 h-5" />
-                                    <span className="font-serif text-lg text-primary">Reservas</span>
-                                </div>
-                                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                                    +351 939 000 735
-                                </a>
-                            </div>
-
-                            {/* Divider Mobile */}
-                            <div className="w-24 h-px bg-border md:hidden" />
-
-                            {/* Social */}
-                            <div className="flex gap-6">
-                                <a
-                                    href="https://www.instagram.com/vulcaniciguimaraes"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-muted-foreground hover:text-accent hover:scale-110 transition-all duration-300"
-                                    aria-label="Instagram"
-                                >
-                                    <Instagram className="w-6 h-6" />
-                                </a>
-                                <a
-                                    href="https://www.facebook.com/profile.php?id=61552967728211"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-muted-foreground hover:text-accent hover:scale-110 transition-all duration-300"
-                                    aria-label="Facebook"
-                                >
-                                    <Facebook className="w-6 h-6" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
                 {/* GALLERY PREVIEW */}
                 <section className="bg-secondary/50 py-20 border-t border-border/50">
