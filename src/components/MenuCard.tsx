@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { type MenuItem } from '../data/menuData';
-import { Plus } from 'lucide-react';
 
 interface MenuCardProps {
     item: MenuItem;
@@ -28,11 +27,6 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
 
                     {/* Overlay Gradient on Hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                    {/* Zoom Icon */}
-                    <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                        <Plus className="w-5 h-5 text-white" />
-                    </div>
                 </div>
             )}
 

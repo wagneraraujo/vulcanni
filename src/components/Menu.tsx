@@ -275,6 +275,10 @@ export default function Menu() {
                 slides={slides}
                 open={lightboxIndex >= 0}
                 close={() => setLightboxIndex(-1)}
+                render={{
+                    buttonPrev: () => null,
+                    buttonNext: () => null,
+                }}
             />
         </div>
     );
