@@ -45,6 +45,14 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                     {item.ingredientes}
                 </p>
 
+                {
+                    item.opcional && (
+                        <p className="text-muted-foreground text-sm font-semibold leading-relaxed mb-6 flex-1">
+                            {item.opcional}
+                        </p>
+                    )
+                }
+
                 {/* Decorative Line */}
                 <div className="w-12 h-0.5 bg-accent/50 rounded-full group-hover:w-full group-hover:bg-primary/20 transition-all duration-500" />
             </div>
