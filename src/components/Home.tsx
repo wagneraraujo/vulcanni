@@ -1,4 +1,4 @@
-import { Instagram, Facebook, MapPin, Phone, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import GallerySection from './ui/GallerySection';
 
