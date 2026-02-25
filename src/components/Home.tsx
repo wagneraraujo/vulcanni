@@ -71,9 +71,11 @@ export default function Home() {
 
                         {/* Narrative Paragraph */}
                         <p className="animate-fade-in-up opacity-0-start delay-500 text-center text-base md:text-lg text-foreground/80 font-sans leading-relaxed max-w-3xl mb-12">
-                            Estamos a preparar uma nova experiência digital para si.
-                            Enquanto isso, convidamo-lo a descobrir a verdadeira essência da pizza napolitana,
-                            onde cada fatia conta uma história de tradição e paixão.
+                            Na Vulcanici não fazemos "pizza italiana". Fazemos a pizza como os italianos fazem:
+                            ingredientes autênticos, massas de fermentação lenta, sabor que fala por si.
+                        </p>
+                        <p className="animate-fade-in-up opacity-0-start delay-500 text-center text-base md:text-lg text-foreground/80 font-sans leading-relaxed max-w-3xl mb-12">
+                            Onde está estamos a preparar
                         </p>
 
                         {/* CTA Button - Elegant & Minimal */}
