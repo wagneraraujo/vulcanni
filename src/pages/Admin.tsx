@@ -26,22 +26,24 @@ export default function Admin() {
     const handleLogin = async () => {
         if (!password.trim()) { setAuthError('Digite a senha'); return; }
         try {
-            const res = await fetch('/api/menu', {
+            const res = await fetch('/api/auth', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
-                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password }),
             });
             if (res.status === 401) {
                 setAuthError('Senha incorreta');
+                return;
+            }
+            if (!res.ok) {
+                setAuthError('Erro ao validar senha');
                 return;
             }
             sessionStorage.setItem(ADMIN_PASSWORD_KEY, password);
             setIsAuthenticated(true);
             setAuthError('');
         } catch {
-            // Server offline - allow with warning
-            sessionStorage.setItem(ADMIN_PASSWORD_KEY, password);
-            setIsAuthenticated(true);
+            setAuthError('Erro de conexao. Tente novamente.');
         }
     };
 
