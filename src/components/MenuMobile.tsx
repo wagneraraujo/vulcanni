@@ -10,28 +10,22 @@ import MenuCard from './MenuCard';
 import DrinkCard from './DrinkCard';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import {
-    menuCategories,
-    bebidasDestaque,
-    // bebidas imports
-    aguas,
-    refrigerantes,
-    cervejas,
-    vinhosTinto,
-    vinhosBranco,
-    vinhosRose,
-    espumante,
-    sangria,
-    aoCopo,
-    cafeDigestivos,
-    type MenuItem,
-} from '../data/menuData';
+import { useMenuData } from '../hooks/useMenuData';
+import { type MenuItem } from '../data/menuData';
 
 interface MenuMobileProps {
     onImageClick: (item: MenuItem) => void;
 }
 
 export default function MenuMobile({ onImageClick }: MenuMobileProps) {
+    const { data } = useMenuData();
+    const {
+        menuCategories, bebidasDestaque,
+        aguas, refrigerantes, cervejas,
+        vinhosTinto, vinhosBranco, vinhosRose,
+        espumante, sangria, aoCopo, cafeDigestivos,
+    } = data;
+
     const [drinkLightboxIndex, setDrinkLightboxIndex] = useState(-1);
     const drinkSlides = bebidasDestaque.map(item => ({ src: item.image }));
 

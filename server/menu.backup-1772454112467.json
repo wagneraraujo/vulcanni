@@ -1,0 +1,128 @@
+{
+  "menuCategories": [
+    {
+      "title": "Antipasti (Entradas)",
+      "items": [
+        { "nome": "Tábua de Charcutaria Italiana / Italian Board", "ingredientes": "Presunto de Parma, mortadela, salame Napoli, burrata, azeitona, parmesão, pão artesanal", "preco": 16, "image": "/galeria/DSC01855.jpg" },
+        { "nome": "Salada / Salad", "ingredientes": "Rúcula, burrata, presunto de Parma, tomate, pesto, parmesão, pão artesanal", "preco": 13, "image": "" },
+        { "nome": "Pão de Alho / Garlic Bread", "ingredientes": "Azeite de alho, orégãos, mozzarella fior di latte", "preco": 3.5, "image": "/galeria/DSC01862.jpg" },
+        { "nome": "Montanara Bufalina", "ingredientes": "Molho de tomate, mozzarella de bufala, parmesão, manjericão", "preco": 4, "image": "/galeria/bufalina.jpg" },
+        { "nome": "Montanara Mortadela", "ingredientes": "Mortadela Bologna, stracciatella, granula de pistacchio, raspas de limão", "preco": 4, "image": "/galeria/DSC02049.jpg" },
+        { "nome": "Montanara Presunto / Montanara Prosciutto", "ingredientes": "Stracciatella, presunto de Parma, pesto, parmesão", "preco": 4, "image": "/galeria/DSC02052.jpg" },
+        { "nome": "Tris Montanara / Montanara Trio", "ingredientes": "Bufalina, mortadela, presunto (não é possível alteração)", "preco": 10, "image": "/galeria/DSC02055.jpg" },
+        { "nome": "Lasanha Bolognese / Lasagna Bolognese", "ingredientes": "Massa fresca, ragù encorpado e molho béchamel cremoso", "preco": 15, "image": "/galeria/DSC02068.jpg" }
+      ]
+    },
+    {
+      "title": "Le Classiche",
+      "items": [
+        { "nome": "Bufalina", "ingredientes": "Molho de tomate, mozzarella de bufala, manjericão, parmesão, azeite extra virgem", "preco": 13, "image": "/galeria/DSC01965.jpg" },
+        { "nome": "Napoletana", "ingredientes": "Molho de tomate, orégãos, manjericão, parmesão, mozzarella fior di latte, anchova, azeite extra virgem", "preco": 12, "image": "/galeria/DSC01898.jpg" },
+        { "nome": "Romana", "ingredientes": "Molho de tomate, fiambre, cogumelos salteados, azeitonas, manjericão, parmesão, mozzarella fior di latte, azeite extra virgem", "preco": 13, "image": "/galeria/DSC02024.jpg" },
+        { "nome": "Margherita", "ingredientes": "Molho de tomate, manjericão, mozzarella fior di latte, parmesão, azeite extra virgem", "preco": 11, "image": "/galeria/DSC01884.jpg" },
+        { "nome": "Quatro Formaggi / Quattro Formaggi", "ingredientes": "Creme de parmesão, manjericão, mozzarella fior di latte, mozzarella defumada (provola), gorgonzola, azeite extra virgem", "preco": 12, "opcional": "Sugestão: creme de trufa +3", "image": "/galeria/DSC01977.jpg" }
+      ]
+    },
+    {
+      "title": "Le Specialità",
+      "items": [
+        { "nome": "Pérola Nera", "ingredientes": "Massa duas culturas (frita/forno), creme de trufa, mozzarella fior di latte, presunto de Parma, creme de ricota, pimenta preta", "preco": 18, "image": "/galeria/DSC02197.jpg" },
+        { "nome": "Sofia Loren", "ingredientes": "Molho de tomate, tomate amarelo, rúcula, mozzarella de bufala, lascas de parmesão, azeite extra virgem", "preco": 14, "image": "/galeria/DSC01937.jpg" },
+        { "nome": "D. Afonso Henriques", "ingredientes": "Formato de raquete, mozzarella de bufala, tomate amarelo, rúcula, presunto de Parma, lascas de parmesão, azeite extra virgem, cabo recheado de ricota e salame Napoli", "preco": 16, "image": "/menu/specialita/afonso-henriques.jpg" },
+        { "nome": "VULCANICI", "ingredientes": "Pepperoni picante, tomate amarelo, manjericão, parmesão, Nduja, mozzarella defumada (provola), azeite extra virgem", "preco": 15, "image": "/galeria/DSC02097.jpg" },
+        { "nome": "Largo da Oliveira", "ingredientes": "Mozzarella fior di latte, mortadela Bologna, manjericão, burrata, pesto de pistacchio, granula de pistacchio, raspas de limão", "preco": 16, "image": "/galeria/DSC01997.jpg" },
+        { "nome": "Doce Armonia / Doce Armonia", "ingredientes": "Creme de pistacchio, fiambre, cebola caramelizada, stracciatella, granula de pistacchio", "preco": 16, "image": "/galeria/DSC02087.jpg" },
+        { "nome": "Parmigiana", "ingredientes": "Ragu napolitano, berinjela, manjericão, mozzarella defumada (provola), creme de bechamel", "preco": 14, "image": "/galeria/DSC02144.jpg" },
+        { "nome": "O Ragù", "ingredientes": "Carne desfiada glaceada no vinho tinto cozida no tomate lentamente, manjericão, mozzarella defumada (provola), parmesão, azeite extra virgem", "preco": 15, "image": "/galeria/DSC02029.jpg" },
+        { "nome": "Totó", "ingredientes": "Molho de tomate, mozzarella fior di latte, rúcula, presunto de Parma, lascas de parmesão, azeite extra virgem", "preco": 14, "image": "/galeria/DSC01909.jpg" },
+        { "nome": "Diavola do Mar", "ingredientes": "Molho de tomate, Nduja, anchova, orégãos, parmesão, stracciatella, manjericão", "preco": 15, "image": "/galeria/DSC02125.jpg" },
+        { "nome": "Prosciutto & Mascarpone", "ingredientes": "Molho de tomate, presunto de Parma, manjericão, parmesão, queijo mascarpone", "preco": 16, "image": "/galeria/DSC02193.jpg" }
+      ]
+    },
+    {
+      "title": "Calzone",
+      "items": [
+        { "nome": "Completo", "ingredientes": "Ricota, salame Napoli, manjericão, mozzarella fior di latte, molho de tomate, parmesão, azeite extra virgem", "preco": 13, "image": "/galeria/DSC02162.jpg" },
+        { "nome": "Scarola", "ingredientes": "Scarola, manjericão, azeitona, mozzarella defumada (provola), parmesão, azeite extra virgem", "preco": 11, "image": "/galeria/DSC02157.jpg" }
+      ]
+    },
+    {
+      "title": "Sobremesas / Dessert",
+      "items": [
+        { "nome": "Babà", "ingredientes": "", "preco": 5, "image": "/menu/sobremesas/baba.jpg" },
+        { "nome": "Tiramisú", "ingredientes": "", "preco": 6, "image": "/menu/sobremesas/tiramisu.jpg" },
+        { "nome": "Delícia de limão / Delizia di Limone", "ingredientes": "", "preco": 7, "image": "/menu/sobremesas/delizia-limone.jpg" },
+        { "nome": "Cheesecake de frutos vermelhos / Red Berry Cheesecake", "ingredientes": "", "preco": 7, "image": "/menu/sobremesas/cheesecake-berries.jpg" },
+        { "nome": "Cheesecake de pistacchio / Pistachio Cheesecake", "ingredientes": "", "preco": 7, "image": "/menu/sobremesas/cheesecake-pistacchio.jpg" },
+        { "nome": "Cheesecake de nutella / Nutella Cheesecake", "ingredientes": "", "preco": 7, "image": "/menu/sobremesas/cheesecake-nutella.jpg" }
+      ]
+    }
+  ],
+  "bebidasDestaque": [
+    { "nome": "Orme di Lava Tinto", "descricao": "Tinto vulcânico do Vulture, aromas de fruta escura e especiarias, taninos firmes mas elegantes.", "preco": 16, "image": "/bebidas/orme-di-lava-tinto.jpg", "categoria": "vinho-tinto" },
+    { "nome": "Aglianico", "descricao": "Tinto intenso do Sannio, notas de frutos vermelhos e pimenta, estrutura cheia e final seco.", "preco": 17, "image": "/bebidas/aglianico.jpg", "categoria": "vinho-tinto" },
+    { "nome": "Negroamaro", "descricao": "Tinto da Púglia macio, com aromas de ameixa e amarena, sabor quente e envolvente.", "preco": 15, "image": "/bebidas/negroamaro.jpg", "categoria": "vinho-tinto" },
+    { "nome": "Orme di Lava Branco", "descricao": "Branco fresco da Basilicata, aromas florais e de fruta branca, boca salgada e mineral.", "preco": 16, "image": "/bebidas/orme-di-lava-branco.jpg", "categoria": "vinho-branco" },
+    { "nome": "Grillo", "descricao": "Branco siciliano aromático, citrinos e flores brancas, fresco, com toque marítimo e muito fácil de beber.", "preco": 17, "image": "/bebidas/grillo.jpg", "categoria": "vinho-branco" },
+    { "nome": "Pinot Grigio", "descricao": "Branco leve e fragrante, notas de pera e maçã, sabor seco e direto.", "preco": 16, "image": "/bebidas/pinot-grigio.jpg", "categoria": "vinho-branco" },
+    { "nome": "Cirò Rosé", "descricao": "Rosé calabrês de Gaglioppo, cor delicada, aromas de morango silvestre e rosa, boca fresca e seca.", "preco": 19, "image": "/bebidas/ciro-rose.jpg", "categoria": "vinho-rose" },
+    { "nome": "Lambrusco Rosé Extra Dry", "descricao": "Rosé frisante, aromas de frutos vermelhos, bolha viva e sabor meio seco mas equilibrado.", "preco": 17, "image": "/bebidas/lambrusco-rose.jpg", "categoria": "vinho-rose" },
+    { "nome": "Radise Spumante", "descricao": "Espumante elegante, aromas de maçã e pão tostado, bolha fina e final seco.", "preco": 15, "image": "/bebidas/radise-spumante.jpg", "categoria": "espumante" },
+    { "nome": "Messina Cristalli di Sale", "descricao": "Cerveja lager siciliana não filtrada, dourada e ligeiramente turva, com sabor macio, toques florais e frutados e uma ponta de sal no final.", "preco": 5, "image": "/bebidas/messina.jpg", "categoria": "cerveja" },
+    { "nome": "Ichnusa Não Filtrata", "descricao": "Cerveja sarda não filtrada, de cor dourada velada, corpo suave, amargor moderado e notas de cereais e lúpulo.", "preco": 4, "image": "/bebidas/ichnusa.jpg", "categoria": "cerveja" },
+    { "nome": "Nastro Azzurro", "descricao": "Lager italiana clara e leve, muito refrescante, com notas discretas de malte e lúpulo e final seco.", "preco": 3.5, "image": "/bebidas/nastro-azzurro.jpg", "categoria": "cerveja" },
+    { "nome": "Peroni Gran Riserva Doppio Malto", "descricao": "Cerveja encorpada de dupla maltagem, cor dourado intenso, aromas de malte e caramelo, sabor cheio e ligeiramente amargo.", "preco": 4, "image": "/bebidas/peroni-doppio-malto.jpg", "categoria": "cerveja" },
+    { "nome": "Peroni Gran Riserva Rossa", "descricao": "Cerveja de cor âmbar/avermelhada, com notas de malte tostado e caramelo, corpo médio e final suave e equilibrado.", "preco": 4, "image": "/bebidas/peroni-rossa.jpg", "categoria": "cerveja" }
+  ],
+  "aguas": [
+    { "nome": "Água Panna 75cl", "preco": 3 },
+    { "nome": "Água Sanpellegriano 75cl", "preco": 3 },
+    { "nome": "Limonata Sanpellegrino", "preco": 3 }
+  ],
+  "refrigerantes": [
+    { "nome": "Coca cola, Cola cola Zero, Sprite, Fanta Laranja 33cl", "preco": 3 },
+    { "nome": "Estathé (Ice Tea Italiano): Pêssego, limão", "preco": 3 }
+  ],
+  "cervejas": [
+    { "nome": "Messina Cristalli di Sale 33cl", "preco": 5 },
+    { "nome": "Ichnusa não filtrada 33cl", "preco": 4 },
+    { "nome": "Peroni Nastro Azzurro 33cl", "preco": 3.5 },
+    { "nome": "Peroni Gran Riserva Doppio Malto 33cl", "preco": 4 },
+    { "nome": "Peroni Gran Riserva Rossa 33cl", "preco": 4 }
+  ],
+  "vinhosTinto": [
+    { "nome": "Orme di Lava (Basilicata)", "preco": 16 },
+    { "nome": "Aglianico (Campania)", "preco": 17 },
+    { "nome": "NegroAmaro (Puglia)", "preco": 15 }
+  ],
+  "vinhosBranco": [
+    { "nome": "Orme di Lava (Basilicata)", "preco": 16 },
+    { "nome": "Grillo (Sicilia)", "preco": 17 },
+    { "nome": "Pinot grigio (Friuli Venezia Giulia)", "preco": 16 }
+  ],
+  "vinhosRose": [
+    { "nome": "Ciró Rosé (Calabria)", "preco": 19 },
+    { "nome": "Lambrusco (Emilia Romagna)", "preco": 17 }
+  ],
+  "espumante": [
+    { "nome": "Radise (Veneto)", "preco": 15 }
+  ],
+  "sangria": [
+    { "nome": "Sangria Tinta", "preco": 16 },
+    { "nome": "Sangria Branca", "preco": 16 },
+    { "nome": "Sangria Espumante", "preco": 17 }
+  ],
+  "aoCopo": [
+    { "nome": "Limoncello Spritz", "preco": 7 },
+    { "nome": "Aperol Spritz", "preco": 7 },
+    { "nome": "Vinho Branco", "preco": 6 },
+    { "nome": "Vinho Tinto", "preco": 6 }
+  ],
+  "cafeDigestivos": [
+    { "nome": "Café / Espresso", "preco": 1.5 },
+    { "nome": "Descafeinado / Decaffeinated", "preco": 1.5 },
+    { "nome": "Limoncello", "preco": 3 },
+    { "nome": "Meloncello", "preco": 3.5 },
+    { "nome": "Amaro del capo", "preco": 3 }
+  ]
+}

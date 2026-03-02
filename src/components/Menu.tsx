@@ -5,20 +5,9 @@ import { MapPin, Instagram, Facebook } from 'lucide-react';
 import MenuCard from './MenuCard';
 import DrinkCard from './DrinkCard';
 import MenuMobile from './MenuMobile';
+import { useMenuData } from '../hooks/useMenuData';
 import {
-    menuCategories,
     unidades,
-    aguas,
-    refrigerantes,
-    cervejas,
-    vinhosTinto,
-    vinhosBranco,
-    vinhosRose,
-    espumante,
-    sangria,
-    aoCopo,
-    cafeDigestivos,
-    bebidasDestaque,
     type MenuItem,
 } from '../data/menuData';
 
@@ -38,6 +27,14 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Menu() {
+    const { data } = useMenuData();
+    const {
+        menuCategories, bebidasDestaque,
+        aguas, refrigerantes, cervejas,
+        vinhosTinto, vinhosBranco, vinhosRose,
+        espumante, sangria, aoCopo, cafeDigestivos,
+    } = data;
+
     const [activeCategory, setActiveCategory] = useState(0);
     const [lightboxIndex, setLightboxIndex] = useState(-1);
     const [drinkLightboxIndex, setDrinkLightboxIndex] = useState(-1);
@@ -50,12 +47,12 @@ export default function Menu() {
         ? menuCategories[activeCategory].items
         : [];
 
-    const itemsWithImages = currentCategoryItems.filter(item => item.image);
-    const slides = itemsWithImages.map(item => ({ src: item.image! }));
+    const itemsWithImages = currentCategoryItems.filter((item: MenuItem) => item.image);
+    const slides = itemsWithImages.map((item: MenuItem) => ({ src: item.image! }));
 
     const handleImageClick = (item: MenuItem) => {
         if (!item.image) return;
-        const index = itemsWithImages.findIndex(i => i.image === item.image);
+        const index = itemsWithImages.findIndex((i: MenuItem) => i.image === item.image);
         if (index >= 0) {
             setLightboxIndex(index);
         }
