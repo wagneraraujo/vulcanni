@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useMenuData, type MenuData } from '../hooks/useMenuData';
 import AdminItemForm from '../components/AdminItemForm';
-import type { MenuItem, DrinkItem, MenuCategory } from '../data/menuData';
-import { Lock, Unlock, Save, Plus, Trash2, Edit3, Eye, EyeOff, ArrowLeft, Wine, Utensils, GlassWater } from 'lucide-react';
+import type { MenuItem, DrinkItem } from '../data/menuData';
+import { Lock, Save, Plus, Trash2, Edit3, ArrowLeft, Wine, Utensils, GlassWater, AlertTriangle } from 'lucide-react';
 
 const ADMIN_PASSWORD_KEY = 'vulcanici_admin_password';
 
 export default function Admin() {
-    const { data, loading, refetch } = useMenuData();
+    const { data, loading, serverAvailable, refetch } = useMenuData();
     const [password, setPassword] = useState(() => sessionStorage.getItem(ADMIN_PASSWORD_KEY) ?? '');
     const [isAuthenticated, setIsAuthenticated] = useState(() => !!sessionStorage.getItem(ADMIN_PASSWORD_KEY));
     const [authError, setAuthError] = useState('');
     const [saving, setSaving] = useState(false);
     const [saveMessage, setSaveMessage] = useState('');
 
-    // Local state for editing
     const [localData, setLocalData] = useState<MenuData>(data);
     const [activeTab, setActiveTab] = useState<'menu' | 'drinks' | 'drinks-list'>('menu');
     const [activeCategoryIdx, setActiveCategoryIdx] = useState(0);
@@ -25,30 +24,22 @@ export default function Admin() {
     }, [data]);
 
     const handleLogin = async () => {
-        // Verify password by trying to fetch with it
+        if (!password.trim()) { setAuthError('Digite a senha'); return; }
         try {
-            const res = await fetch('/api/menu', { headers: { 'x-admin-password': password } });
-            if (res.ok || res.status === 401) {
-                // 401 means server exists and password was checked, so we can verify
-                const testRes = await fetch('/api/menu');
-                if (testRes.ok) {
-                    // Server is running, now test password with a dummy request
-                    const dummy = await fetch('/api/menu', {
-                        method: 'POST',
-                        headers: { 'x-admin-password': password, 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
-                    });
-                    if (dummy.status === 401) {
-                        setAuthError('Senha incorreta');
-                        return;
-                    }
-                }
-                sessionStorage.setItem(ADMIN_PASSWORD_KEY, password);
-                setIsAuthenticated(true);
-                setAuthError('');
+            const res = await fetch('/api/menu', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
+                body: JSON.stringify(data),
+            });
+            if (res.status === 401) {
+                setAuthError('Senha incorreta');
+                return;
             }
+            sessionStorage.setItem(ADMIN_PASSWORD_KEY, password);
+            setIsAuthenticated(true);
+            setAuthError('');
         } catch {
-            // Server might not be running, allow access with warning
+            // Server offline - allow with warning
             sessionStorage.setItem(ADMIN_PASSWORD_KEY, password);
             setIsAuthenticated(true);
         }
@@ -66,27 +57,24 @@ export default function Admin() {
         try {
             const res = await fetch('/api/menu', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-admin-password': password,
-                },
+                headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
                 body: JSON.stringify(localData),
             });
             if (res.ok) {
                 setSaveMessage('Guardado com sucesso!');
                 refetch();
+            } else if (res.status === 401) {
+                setSaveMessage('Senha incorreta. Faca login novamente.');
             } else {
-                setSaveMessage('Erro ao guardar. Verifique a senha.');
+                setSaveMessage('Erro ao guardar.');
             }
         } catch {
-            setSaveMessage('Erro de conexão. O servidor está a correr?');
+            setSaveMessage('Erro de conexao. O servidor esta a correr? Use npm run dev:full');
         } finally {
             setSaving(false);
-            setTimeout(() => setSaveMessage(''), 3000);
+            setTimeout(() => setSaveMessage(''), 5000);
         }
     };
-
-    // ─── Menu Item Operations ─────────────────────────────────────────────────
 
     const addMenuItem = (categoryIdx: number, item: MenuItem) => {
         const newCats = [...localData.menuCategories];
@@ -112,8 +100,6 @@ export default function Admin() {
         setLocalData({ ...localData, menuCategories: newCats });
     };
 
-    // ─── Drink Item Operations ────────────────────────────────────────────────
-
     const addDrinkItem = (item: DrinkItem) => {
         setLocalData({ ...localData, bebidasDestaque: [...localData.bebidasDestaque, item] });
         setEditingItem(null);
@@ -131,8 +117,6 @@ export default function Admin() {
         const newItems = localData.bebidasDestaque.filter((_, i) => i !== itemIdx);
         setLocalData({ ...localData, bebidasDestaque: newItems });
     };
-
-    // ─── Drink List Operations ────────────────────────────────────────────────
 
     const updateDrinkListItem = (listName: keyof MenuData, itemIdx: number, updated: MenuItem) => {
         const list = localData[listName] as MenuItem[];
@@ -153,8 +137,6 @@ export default function Admin() {
         setLocalData({ ...localData, [listName]: [...list, newItem] });
     };
 
-    // ─── Render ───────────────────────────────────────────────────────────────
-
     if (!isAuthenticated) {
         return (
             <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -164,7 +146,7 @@ export default function Admin() {
                             <Lock className="w-5 h-5 text-primary" />
                         </div>
                         <div>
-                            <h1 className="text-xl font-bold">Área de Admin</h1>
+                            <h1 className="text-xl font-bold">Area de Admin</h1>
                             <p className="text-xs text-muted-foreground">Vulcanici Pizzeria</p>
                         </div>
                     </div>
@@ -198,6 +180,16 @@ export default function Admin() {
 
     return (
         <div className="min-h-screen bg-background">
+            {/* Server offline warning */}
+            {!serverAvailable && (
+                <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 flex items-center gap-2 text-amber-800 text-sm">
+                    <AlertTriangle className="w-4 h-4 flex-shrink-0" />
+                    <span>
+                        <strong>Servidor offline.</strong> As alteracoes nao serao guardadas. Inicie o servidor com <code className="bg-amber-100 px-1 rounded">npm run dev:full</code> em vez de <code className="bg-amber-100 px-1 rounded">npm run dev</code>.
+                    </span>
+                </div>
+            )}
+
             {/* Header */}
             <header className="sticky top-0 z-40 bg-card border-b border-border">
                 <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
@@ -205,12 +197,10 @@ export default function Admin() {
                         <a href="/menu" className="p-2 hover:bg-muted rounded-lg transition">
                             <ArrowLeft className="w-5 h-5" />
                         </a>
-                        <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                <Unlock className="w-4 h-4 text-primary" />
-                            </div>
-                            <h1 className="font-bold hidden sm:block">Admin</h1>
-                        </div>
+                        <h1 className="font-bold hidden sm:block">Admin</h1>
+                        {serverAvailable && (
+                            <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Servidor activo</span>
+                        )}
                     </div>
                     <div className="flex items-center gap-3">
                         {saveMessage && (
@@ -220,17 +210,14 @@ export default function Admin() {
                         )}
                         <button
                             onClick={handleSave}
-                            disabled={saving}
+                            disabled={saving || !serverAvailable}
                             className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 disabled:opacity-50 transition"
+                            title={!serverAvailable ? 'Servidor offline - use npm run dev:full' : ''}
                         >
                             <Save className="w-4 h-4" />
                             <span className="hidden sm:inline">{saving ? 'A guardar...' : 'Guardar'}</span>
                         </button>
-                        <button
-                            onClick={handleLogout}
-                            className="p-2 hover:bg-muted rounded-lg transition"
-                            title="Sair"
-                        >
+                        <button onClick={handleLogout} className="p-2 hover:bg-muted rounded-lg transition" title="Sair">
                             <Lock className="w-4 h-4 text-muted-foreground" />
                         </button>
                     </div>
@@ -268,7 +255,6 @@ export default function Admin() {
             <main className="max-w-6xl mx-auto px-4 py-6">
                 {activeTab === 'menu' && (
                     <div className="space-y-6">
-                        {/* Category Selector */}
                         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2">
                             {localData.menuCategories.map((cat, idx) => (
                                 <button
@@ -281,7 +267,6 @@ export default function Admin() {
                             ))}
                         </div>
 
-                        {/* Category Title */}
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-semibold">{localData.menuCategories[activeCategoryIdx].title}</h2>
                             <button
@@ -293,7 +278,6 @@ export default function Admin() {
                             </button>
                         </div>
 
-                        {/* Add Form */}
                         {editingItem?.type === 'menu' && editingItem.categoryIdx === activeCategoryIdx && editingItem.itemIdx === undefined && (
                             <AdminItemForm
                                 type="menu"
@@ -303,7 +287,6 @@ export default function Admin() {
                             />
                         )}
 
-                        {/* Items List */}
                         <div className="space-y-3">
                             {localData.menuCategories[activeCategoryIdx].items.map((item, idx) => (
                                 <div key={idx} className="bg-card border border-border rounded-xl p-4">
@@ -427,13 +410,13 @@ export default function Admin() {
                         {[
                             { key: 'vinhosTinto', title: 'Vinhos Tinto' },
                             { key: 'vinhosBranco', title: 'Vinhos Branco' },
-                            { key: 'vinhosRose', title: 'Vinhos Rosé' },
+                            { key: 'vinhosRose', title: 'Vinhos Rose' },
                             { key: 'espumante', title: 'Espumante' },
                             { key: 'sangria', title: 'Sangria' },
                             { key: 'cervejas', title: 'Cervejas' },
-                            { key: 'aguas', title: 'Águas' },
+                            { key: 'aguas', title: 'Aguas' },
                             { key: 'refrigerantes', title: 'Refrigerantes' },
-                            { key: 'cafeDigestivos', title: 'Café & Digestivos' },
+                            { key: 'cafeDigestivos', title: 'Cafe & Digestivos' },
                             { key: 'aoCopo', title: 'Ao Copo' },
                         ].map(({ key, title }) => {
                             const list = localData[key as keyof MenuData] as MenuItem[];
@@ -457,10 +440,11 @@ export default function Admin() {
                                                     value={item.nome}
                                                     onChange={e => updateDrinkListItem(key as keyof MenuData, idx, { ...item, nome: e.target.value })}
                                                 />
+                                                <span className="text-muted-foreground text-sm">€</span>
                                                 <input
                                                     type="number"
                                                     step="0.5"
-                                                    className="w-20 bg-muted rounded px-2 py-1 text-sm"
+                                                    className="w-16 bg-muted rounded px-2 py-1 text-sm"
                                                     value={item.preco}
                                                     onChange={e => updateDrinkListItem(key as keyof MenuData, idx, { ...item, preco: parseFloat(e.target.value) || 0 })}
                                                 />

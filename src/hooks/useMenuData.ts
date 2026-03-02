@@ -50,6 +50,7 @@ const STATIC_FALLBACK: MenuData = {
 export function useMenuData() {
     const [data, setData] = useState<MenuData>(STATIC_FALLBACK);
     const [loading, setLoading] = useState(true);
+    const [serverAvailable, setServerAvailable] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const fetchMenu = async () => {
@@ -59,11 +60,12 @@ export function useMenuData() {
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const json: MenuData = await res.json();
             setData(json);
+            setServerAvailable(true);
             setError(null);
-        } catch (err) {
-            // Server not available — use static fallback silently
+        } catch {
             setData(STATIC_FALLBACK);
-            setError(null); // Don't show error to public visitors
+            setServerAvailable(false);
+            setError('Servidor offline. A mostrar dados base.');
         } finally {
             setLoading(false);
         }
@@ -73,5 +75,5 @@ export function useMenuData() {
         fetchMenu();
     }, []);
 
-    return { data, loading, error, refetch: fetchMenu };
+    return { data, loading, error, serverAvailable, refetch: fetchMenu };
 }
