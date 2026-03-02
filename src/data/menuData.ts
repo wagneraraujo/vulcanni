@@ -6,6 +6,14 @@ export interface MenuItem {
     image?: string;
 }
 
+export interface DrinkItem {
+    nome: string;
+    descricao: string;
+    preco: number;
+    image: string;
+    categoria: 'vinho-tinto' | 'vinho-branco' | 'vinho-rose' | 'espumante' | 'cerveja';
+}
+
 export interface MenuCategory {
     title: string;
     items: MenuItem[];
@@ -272,4 +280,110 @@ export const menuCategories: MenuCategory[] = [
     { title: "Le Specialità", items: leSpecialita },
     { title: "Calzone", items: calzone },
     { title: "Sobremesas / Dessert", items: sobremesas }
+];
+
+export const bebidasDestaque: DrinkItem[] = [
+    // Vinhos Tintos
+    {
+        nome: "Orme di Lava Tinto",
+        descricao: "Tinto vulcânico do Vulture, aromas de fruta escura e especiarias, taninos firmes mas elegantes.",
+        preco: 16,
+        image: "/bebidas/orme-di-lava-tinto.jpg",
+        categoria: "vinho-tinto"
+    },
+    {
+        nome: "Aglianico",
+        descricao: "Tinto intenso do Sannio, notas de frutos vermelhos e pimenta, estrutura cheia e final seco.",
+        preco: 17,
+        image: "/bebidas/aglianico.jpg",
+        categoria: "vinho-tinto"
+    },
+    {
+        nome: "Negroamaro",
+        descricao: "Tinto da Púglia macio, com aromas de ameixa e amarena, sabor quente e envolvente.",
+        preco: 15,
+        image: "/bebidas/negroamaro.jpg",
+        categoria: "vinho-tinto"
+    },
+    // Vinhos Brancos
+    {
+        nome: "Orme di Lava Branco",
+        descricao: "Branco fresco da Basilicata, aromas florais e de fruta branca, boca salgada e mineral.",
+        preco: 16,
+        image: "/bebidas/orme-di-lava-branco.jpg",
+        categoria: "vinho-branco"
+    },
+    {
+        nome: "Grillo",
+        descricao: "Branco siciliano aromático, citrinos e flores brancas, fresco, com toque marítimo e muito fácil de beber.",
+        preco: 17,
+        image: "/bebidas/grillo.jpg",
+        categoria: "vinho-branco"
+    },
+    {
+        nome: "Pinot Grigio",
+        descricao: "Branco leve e fragrante, notas de pera e maçã, sabor seco e direto.",
+        preco: 16,
+        image: "/bebidas/pinot-grigio.jpg",
+        categoria: "vinho-branco"
+    },
+    // Vinhos Rosé
+    {
+        nome: "Cirò Rosé",
+        descricao: "Rosé calabrês de Gaglioppo, cor delicada, aromas de morango silvestre e rosa, boca fresca e seca.",
+        preco: 19,
+        image: "/bebidas/ciro-rose.jpg",
+        categoria: "vinho-rose"
+    },
+    {
+        nome: "Lambrusco Rosé Extra Dry",
+        descricao: "Rosé frisante, aromas de frutos vermelhos, bolha viva e sabor meio seco mas equilibrado.",
+        preco: 17,
+        image: "/bebidas/lambrusco-rose.jpg",
+        categoria: "vinho-rose"
+    },
+    // Espumante
+    {
+        nome: "Radise Spumante",
+        descricao: "Espumante elegante, aromas de maçã e pão tostado, bolha fina e final seco.",
+        preco: 15,
+        image: "/bebidas/radise-spumante.jpg",
+        categoria: "espumante"
+    },
+    // Cervejas
+    {
+        nome: "Messina Cristalli di Sale",
+        descricao: "Cerveja lager siciliana não filtrada, dourada e ligeiramente turva, com sabor macio, toques florais e frutados e uma ponta de sal no final.",
+        preco: 5,
+        image: "/bebidas/messina.jpg",
+        categoria: "cerveja"
+    },
+    {
+        nome: "Ichnusa Não Filtrata",
+        descricao: "Cerveja sarda não filtrada, de cor dourada velada, corpo suave, amargor moderado e notas de cereais e lúpulo.",
+        preco: 4,
+        image: "/bebidas/ichnusa.jpg",
+        categoria: "cerveja"
+    },
+    {
+        nome: "Nastro Azzurro",
+        descricao: "Lager italiana clara e leve, muito refrescante, com notas discretas de malte e lúpulo e final seco.",
+        preco: 3.5,
+        image: "/bebidas/nastro-azzurro.jpg",
+        categoria: "cerveja"
+    },
+    {
+        nome: "Peroni Gran Riserva Doppio Malto",
+        descricao: "Cerveja encorpada de dupla maltagem, cor dourado intenso, aromas de malte e caramelo, sabor cheio e ligeiramente amargo.",
+        preco: 4,
+        image: "/bebidas/peroni-doppio-malto.jpg",
+        categoria: "cerveja"
+    },
+    {
+        nome: "Peroni Gran Riserva Rossa",
+        descricao: "Cerveja de cor âmbar/avermelhada, com notas de malte tostado e caramelo, corpo médio e final suave e equilibrado.",
+        preco: 4,
+        image: "/bebidas/peroni-rossa.jpg",
+        categoria: "cerveja"
+    },
 ];

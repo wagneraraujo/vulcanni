@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { MapPin, Instagram, Facebook } from 'lucide-react';
 import MenuCard from './MenuCard';
+import DrinkCard from './DrinkCard';
 import MenuMobile from './MenuMobile';
 import {
     menuCategories,
@@ -17,6 +18,7 @@ import {
     sangria,
     aoCopo,
     cafeDigestivos,
+    bebidasDestaque,
     type MenuItem,
 } from '../data/menuData';
 
@@ -38,6 +40,11 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 export default function Menu() {
     const [activeCategory, setActiveCategory] = useState(0);
     const [lightboxIndex, setLightboxIndex] = useState(-1);
+    const [drinkLightboxIndex, setDrinkLightboxIndex] = useState(-1);
+
+    // TOTAL_TABS = menuCategories.length + "Bebidas em Destaque" + "Bebidas & Vinhos"
+    const DRINKS_HIGHLIGHT_TAB = menuCategories.length;
+    const DRINKS_LIST_TAB = menuCategories.length + 1;
 
     const currentCategoryItems = activeCategory < menuCategories.length
         ? menuCategories[activeCategory].items
@@ -53,6 +60,8 @@ export default function Menu() {
             setLightboxIndex(index);
         }
     };
+
+    const drinkSlides = bebidasDestaque.map(item => ({ src: item.image }));
 
     const whatsappNumber = '+351939000735';
     const whatsappMessage = 'Olá! Gostaria de fazer uma reserva na Vulcanici Pizzeria.';
@@ -119,8 +128,17 @@ export default function Menu() {
                                 </button>
                             ))}
                             <button
-                                onClick={() => setActiveCategory(menuCategories.length)}
-                                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === menuCategories.length
+                                onClick={() => setActiveCategory(DRINKS_HIGHLIGHT_TAB)}
+                                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === DRINKS_HIGHLIGHT_TAB
+                                    ? 'bg-primary text-primary-foreground shadow-md scale-105'
+                                    : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
+                                    }`}
+                            >
+                                Bebidas em Destaque
+                            </button>
+                            <button
+                                onClick={() => setActiveCategory(DRINKS_LIST_TAB)}
+                                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === DRINKS_LIST_TAB
                                     ? 'bg-primary text-primary-foreground shadow-md scale-105'
                                     : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
                                     }`}
@@ -158,6 +176,28 @@ export default function Menu() {
                                         key={index}
                                         item={item}
                                         onImageClick={() => handleImageClick(item)}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    ) : activeCategory === DRINKS_HIGHLIGHT_TAB ? (
+                        /* Bebidas em Destaque - Grid com imagens */
+                        <div className="animate-fade-in-up">
+                            <div className="text-center mb-12">
+                                <span className="text-accent font-serif italic text-lg opacity-80">Nossa Seleção de</span>
+                                <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mt-2">
+                                    Bebidas em Destaque
+                                </h2>
+                                <p className="text-muted-foreground mt-4 font-light">Vinhos, cervejas e espumantes cuidadosamente selecionados.</p>
+                                <div className="w-24 h-1 bg-accent mx-auto mt-6 rounded-full opacity-60" />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                                {bebidasDestaque.map((item, index) => (
+                                    <DrinkCard
+                                        key={index}
+                                        item={item}
+                                        onImageClick={() => setDrinkLightboxIndex(index)}
                                     />
                                 ))}
                             </div>
@@ -269,7 +309,7 @@ export default function Menu() {
                 <WhatsAppIcon className="w-7 h-7 text-white" />
             </a>
 
-            {/* Lightbox */}
+            {/* Lightbox - Food */}
             <Lightbox
                 index={lightboxIndex}
                 slides={slides}
@@ -278,6 +318,18 @@ export default function Menu() {
                 render={{
                     buttonPrev: () => null,
                     buttonNext: () => null,
+                }}
+            />
+
+            {/* Lightbox - Drinks */}
+            <Lightbox
+                index={drinkLightboxIndex}
+                slides={drinkSlides}
+                open={drinkLightboxIndex >= 0}
+                close={() => setDrinkLightboxIndex(-1)}
+                render={{
+                    buttonPrev: slides.length <= 1 ? () => null : undefined,
+                    buttonNext: slides.length <= 1 ? () => null : undefined,
                 }}
             />
         </div>

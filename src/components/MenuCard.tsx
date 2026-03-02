@@ -33,9 +33,16 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
             {/* Content Section */}
             <div className="p-6 flex flex-col flex-1">
                 <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-serif text-2xl text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
-                        {item.nome}
-                    </h3>
+                    <div className="flex flex-col leading-tight">
+                        <h3 className="font-serif text-2xl text-foreground group-hover:text-primary transition-colors duration-300">
+                            {item.nome.includes(' / ') ? item.nome.split(' / ')[0] : item.nome}
+                        </h3>
+                        {item.nome.includes(' / ') && (
+                            <span className="font-serif text-sm italic text-muted-foreground mt-0.5">
+                                {item.nome.split(' / ')[1]}
+                            </span>
+                        )}
+                    </div>
                     <span className="font-sans font-semibold text-lg text-primary bg-primary/10 px-3 py-1 rounded-full whitespace-nowrap ml-4">
                         €{item.preco.toFixed(2)}
                     </span>

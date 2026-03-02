@@ -5,9 +5,14 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 import MenuCard from './MenuCard';
+import DrinkCard from './DrinkCard';
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 import {
     menuCategories,
+    bebidasDestaque,
     // bebidas imports
     aguas,
     refrigerantes,
@@ -27,6 +32,9 @@ interface MenuMobileProps {
 }
 
 export default function MenuMobile({ onImageClick }: MenuMobileProps) {
+    const [drinkLightboxIndex, setDrinkLightboxIndex] = useState(-1);
+    const drinkSlides = bebidasDestaque.map(item => ({ src: item.image }));
+
     const drinkCategories = [
         { title: 'Vinhos Tinto', items: vinhosTinto },
         { title: 'Vinhos Branco', items: vinhosBranco },
@@ -89,6 +97,41 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                     </AccordionItem>
                 ))}
 
+                {/* Bebidas em Destaque Section */}
+                <AccordionItem value="bebidas-destaque" className="border rounded-xl bg-card overflow-hidden shadow-sm">
+                    <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden [&>svg]:hidden">
+                        <div className="absolute inset-0 z-0">
+                            <img
+                                src="/bg-pizza.jpg"
+                                alt="Bebidas em Destaque"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-black/55 group-hover:bg-black/45 transition-colors duration-300" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 to-transparent mix-blend-overlay" />
+                        </div>
+                        <div className="relative z-10 w-full px-6 flex items-center justify-between gap-3 mt-8">
+                            <span className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-md">
+                                Bebidas em Destaque
+                            </span>
+                            <div className="bg-white/20 backdrop-blur-md p-2 rounded-full border border-white/30 shadow-lg transition-transform duration-300 group-data-[state=open]:rotate-180">
+                                <ChevronDown className="w-6 h-6 text-white" />
+                            </div>
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4 pb-6 pt-2">
+                        <div className="grid grid-cols-1 gap-6">
+                            {bebidasDestaque.map((item, idx) => (
+                                <DrinkCard
+                                    key={idx}
+                                    item={item}
+                                    onImageClick={() => setDrinkLightboxIndex(idx)}
+                                />
+                            ))}
+                        </div>
+                    </AccordionContent>
+                </AccordionItem>
+
                 {/* Bebidas Section */}
                 <AccordionItem value="bebidas" className="border rounded-xl bg-card overflow-hidden shadow-sm">
                     <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden [&>svg]:hidden">
@@ -137,6 +180,14 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
+
+            {/* Lightbox - Drinks */}
+            <Lightbox
+                index={drinkLightboxIndex}
+                slides={drinkSlides}
+                open={drinkLightboxIndex >= 0}
+                close={() => setDrinkLightboxIndex(-1)}
+            />
         </div>
     );
 }
