@@ -30,18 +30,14 @@ export default function Menu() {
     const { data } = useMenuData();
     const {
         menuCategories, bebidasDestaque,
-        aguas, refrigerantes, cervejas,
-        vinhosTinto, vinhosBranco, vinhosRose,
-        espumante, sangria, aoCopo, cafeDigestivos,
     } = data;
 
     const [activeCategory, setActiveCategory] = useState(0);
     const [lightboxIndex, setLightboxIndex] = useState(-1);
     const [drinkLightboxIndex, setDrinkLightboxIndex] = useState(-1);
 
-    // TOTAL_TABS = menuCategories.length + "Bebidas em Destaque" + "Bebidas & Vinhos"
+    // TOTAL_TABS = menuCategories.length + "Bebidas em Destaque"
     const DRINKS_HIGHLIGHT_TAB = menuCategories.length;
-    const DRINKS_LIST_TAB = menuCategories.length + 1;
 
     const currentCategoryItems = activeCategory < menuCategories.length
         ? menuCategories[activeCategory].items
@@ -133,15 +129,6 @@ export default function Menu() {
                             >
                                 Bebidas em Destaque
                             </button>
-                            <button
-                                onClick={() => setActiveCategory(DRINKS_LIST_TAB)}
-                                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === DRINKS_LIST_TAB
-                                    ? 'bg-primary text-primary-foreground shadow-md scale-105'
-                                    : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
-                                    }`}
-                            >
-                                Bebidas & Vinhos
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -157,7 +144,7 @@ export default function Menu() {
 
                 {/* Desktop Menu (Tabs) */}
                 <div className="hidden md:block">
-                    {activeCategory < menuCategories.length ? (
+                    {activeCategory < menuCategories.length && (
                         <div className="animate-fade-in-up">
                             <div className="text-center mb-12">
                                 <span className="text-accent font-serif italic text-lg opacity-80">Nossa Seleção de</span>
@@ -177,7 +164,8 @@ export default function Menu() {
                                 ))}
                             </div>
                         </div>
-                    ) : activeCategory === DRINKS_HIGHLIGHT_TAB ? (
+                    )}
+                    {activeCategory === DRINKS_HIGHLIGHT_TAB && (
                         /* Bebidas em Destaque - Grid com imagens */
                         <div className="animate-fade-in-up">
                             <div className="text-center mb-12">
@@ -198,43 +186,6 @@ export default function Menu() {
                                     />
                                 ))}
                             </div>
-                        </div>
-                    ) : (
-                        /* Bebidas Section - Modern List Layout */
-                        <div className="space-y-16 animate-fade-in-up max-w-5xl mx-auto">
-                            <div className="text-center mb-12">
-                                <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary">
-                                    Rolha & Bar
-                                </h2>
-                                <p className="text-muted-foreground mt-4 font-light">Uma seleção curada para acompanhar sua experiência.</p>
-                            </div>
-
-                            {/* Drink Categories */}
-                            {[
-                                { title: 'Vinhos Tinto', items: vinhosTinto },
-                                { title: 'Vinhos Branco', items: vinhosBranco },
-                                { title: 'Vinhos Rosé', items: vinhosRose },
-                                { title: 'Espumante & Sangria', items: [...espumante, ...sangria] },
-                                { title: 'Cervejas', items: cervejas },
-                                { title: 'Não Alcoólicos', items: [...aguas, ...refrigerantes] },
-                                { title: 'Café & Digestivos', items: [...cafeDigestivos, ...aoCopo] }
-                            ].map((category, idx) => (
-                                <div key={idx} className="bg-card rounded-2xl p-8 border border-border/40 shadow-sm hover:shadow-md transition-shadow">
-                                    <h3 className="text-2xl font-serif font-bold text-primary mb-6 flex items-center gap-3">
-                                        {category.title}
-                                        <div className="h-px bg-border flex-1 opacity-50 ml-4" />
-                                    </h3>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-                                        {category.items.map((item, i) => (
-                                            <div key={i} className="flex justify-between items-baseline group border-b border-dashed border-border/30 pb-2">
-                                                <span className="text-foreground font-medium group-hover:text-primary transition-colors">{item.nome}</span>
-                                                <div className="border-b-2 border-dotted border-muted flex-1 mx-2 opacity-30" />
-                                                <span className="text-primary font-bold">€{item.preco.toFixed(2)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
                         </div>
                     )}
                 </div>
