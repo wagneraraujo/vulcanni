@@ -22,6 +22,8 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                         alt={item.nome}
                         className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                         loading="lazy"
+                        referrerPolicy="no-referrer"
+                        crossOrigin="anonymous"
                         onError={(e) => {
                             console.error('❌ Erro ao carregar imagem:', item.image);
                             console.error('Detalhes:', e);
