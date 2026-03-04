@@ -22,11 +22,28 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                         alt={item.nome}
                         className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                         loading="lazy"
-                        onError={() => setImageError(true)}
+                        onError={(e) => {
+                            console.error('❌ Erro ao carregar imagem:', item.image);
+                            console.error('Detalhes:', e);
+                            setImageError(true);
+                        }}
+                        onLoad={() => {
+                            console.log('✅ Imagem carregada com sucesso:', item.image);
+                        }}
                     />
 
                     {/* Overlay Gradient on Hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+            )}
+
+            {/* Fallback when image fails or doesn't exist */}
+            {item.image && imageError && (
+                <div className="relative h-64 bg-muted/30 flex items-center justify-center">
+                    <div className="text-center p-4">
+                        <p className="text-sm text-muted-foreground">Imagem não disponível</p>
+                        <p className="text-xs text-muted-foreground/60 mt-1 truncate max-w-[200px]">{item.image}</p>
+                    </div>
                 </div>
             )}
 

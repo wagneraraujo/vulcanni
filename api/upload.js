@@ -35,8 +35,9 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Nenhum ficheiro enviado' });
         }
 
-        const ext = (file.originalFilename?.split('.').pop() || 'jpg').toLowerCase();
-        const mimeMap = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif' };
+        const rawExt = (file.originalFilename?.split('.').pop() || 'jpg').toLowerCase();
+        const mimeMap = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif', heic: 'image/heic' };
+        const ext = mimeMap[rawExt] ? rawExt : 'jpg';
         const contentType = mimeMap[ext] || file.mimetype || 'image/jpeg';
         const filename = `${folder}/${Date.now()}.${ext}`;
         const buffer = fs.readFileSync(file.filepath);

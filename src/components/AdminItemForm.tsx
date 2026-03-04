@@ -19,6 +19,53 @@ const DRINK_CATEGORIES = [
     { value: 'cerveja', label: 'Cerveja' },
 ] as const;
 
+const compressImage = async (file: File): Promise<File> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target?.result as string;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+
+                const MAX_WIDTH = 1280;
+                if (width > MAX_WIDTH) {
+                    height = Math.round((height * MAX_WIDTH) / width);
+                    width = MAX_WIDTH;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) {
+                    reject(new Error('Failed to get canvas context'));
+                    return;
+                }
+                ctx.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob((blob) => {
+                    if (!blob) {
+                        reject(new Error('Canvas is empty'));
+                        return;
+                    }
+                    const originalName = file.name;
+                    const nameWithoutExt = originalName.substring(0, originalName.lastIndexOf('.')) || originalName;
+                    const compressedFile = new File([blob], `${nameWithoutExt}.jpg`, {
+                        type: 'image/jpeg',
+                        lastModified: Date.now(),
+                    });
+                    resolve(compressedFile);
+                }, 'image/jpeg', 0.82);
+            };
+            img.onerror = (error) => reject(error);
+        };
+        reader.onerror = (error) => reject(error);
+    });
+};
+
 export default function AdminItemForm({ item, type, password, onSave, onCancel }: AdminItemFormProps) {
     const [nome, setNome] = useState(item?.nome ?? '');
     const [nomeEn, setNomeEn] = useState(() => {
@@ -44,8 +91,9 @@ export default function AdminItemForm({ item, type, password, onSave, onCancel }
         setUploading(true);
         setUploadError('');
         try {
+            const compressedFile = await compressImage(file);
             const fd = new FormData();
-            fd.append('image', file);
+            fd.append('image', compressedFile);
             const res = await fetch(`/api/upload?folder=${folder}`, {
                 method: 'POST',
                 headers: { 'x-admin-password': password },
