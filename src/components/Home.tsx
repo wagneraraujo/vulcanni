@@ -97,9 +97,9 @@ export default function Home() {
 
 
                 {/* GALLERY PREVIEW */}
-                <section className="bg-secondary/50 py-20 border-t border-border/50">
+                {/* <section className="bg-secondary/50 py-20 border-t border-border/50">
                     <GallerySection />
-                </section>
+                </section> */}
 
                 {/* FOOTER */}
                 <footer className="w-full bg-primary text-primary-foreground py-12 text-center">
