@@ -9,26 +9,29 @@ interface MenuCardProps {
 export default function MenuCard({ item, onImageClick }: MenuCardProps) {
     const [imageError, setImageError] = useState(false);
 
+    console.log(item?.image)
+
     return (
         <div className="group relative bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 flex flex-col h-full">
             {/* Image Section - Only render if image exists and no error occurred */}
-            {item.image && !imageError && (
+            {item?.image && !imageError && (
                 <div
                     className="relative h-64 overflow-hidden cursor-pointer"
                     onClick={onImageClick}
                 >
                     <img
-                        src={item.image}
-                        alt={item.nome}
+                        src={item?.image}
+                        alt={item?.nome}
                         className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                         loading="lazy"
+                        {...(item?.image?.startsWith('http') ? { crossOrigin: 'anonymous' } : {})}
                         onError={(e) => {
-                            console.error('❌ Erro ao carregar imagem:', item.image);
+                            console.error('❌ Erro ao carregar imagem:', item?.image);
                             console.error('Detalhes:', e);
                             setImageError(true);
                         }}
                         onLoad={() => {
-                            console.log('✅ Imagem carregada com sucesso:', item.image);
+                            console.log('✅ Imagem carregada com sucesso:', item?.image);
                         }}
                     />
 
@@ -37,16 +40,14 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                 </div>
             )}
 
-            {/* Fallback when image fails or doesn't exist */}
-            {item.image && imageError && (
-                <div className="relative h-64 bg-muted/30 flex items-center justify-center">
+            {/* Fallback when image fails */}
+            {item?.image && imageError && (
+                <div className="relative h-64 bg-muted/30 flex items-center justify-center overflow-hidden">
                     <div className="text-center p-4">
                         <p className="text-sm text-muted-foreground">Imagem não disponível</p>
-                        <p className="text-xs text-muted-foreground/60 mt-1 truncate max-w-[200px]">{item.image}</p>
                     </div>
                 </div>
             )}
-
             {/* Content Section */}
             <div className="p-6 flex flex-col flex-1">
                 <div className="flex justify-between items-start mb-2">

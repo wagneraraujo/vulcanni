@@ -58,7 +58,7 @@ export const antipasti: MenuItem[] = [
         nome: "Montanara Bufalina",
         ingredientes: "Molho de tomate, mozzarella de bufala, parmesão, manjericão",
         preco: 4,
-        image: "/galeria/bufalina.jpg"
+        image: ""
     },
     {
         nome: "Montanara Mortadela",
