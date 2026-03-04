@@ -1,6 +1,5 @@
 import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import GallerySection from './ui/GallerySection';
 
 // WhatsApp Icon Component
 const WhatsAppIcon = ({ className }: { className?: string }) => (
