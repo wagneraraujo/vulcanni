@@ -37,7 +37,7 @@ export default function DrinkCard({ item, onImageClick }: DrinkCardProps) {
                         <img
                             src={item.image}
                             alt={item.nome}
-                            className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                            className="w-full h-full object-contain transition-transform duration-700 ease-in-out group-hover:scale-110"
                             loading="lazy"
                             {...(item.image?.startsWith('http') ? { crossOrigin: 'anonymous' } : {})}
                             onError={(e) => {
