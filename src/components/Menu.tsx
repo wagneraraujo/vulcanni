@@ -63,12 +63,11 @@ export default function Menu() {
     return (
         <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground relative">
             {/* Azulejo Texture Background */}
-            <div className="absolute top-[80px] left-0 right-0 h-[800px] w-full z-0 pointer-events-none opacity-25 mix-blend-multiply overflow-hidden">
+            <div className="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-[0.15] mix-blend-multiply overflow-hidden">
                 <div
                     className="absolute inset-0 bg-[url('/azuleijos.jpeg')] bg-repeat"
                     style={{ backgroundSize: '400px' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/60 to-background" />
             </div>
 
 
@@ -263,6 +262,7 @@ export default function Menu() {
                 slides={slides}
                 open={lightboxIndex >= 0}
                 close={() => setLightboxIndex(-1)}
+                controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
                 render={{
                     buttonPrev: () => null,
                     buttonNext: () => null,
@@ -275,6 +275,7 @@ export default function Menu() {
                 slides={drinkSlides}
                 open={drinkLightboxIndex >= 0}
                 close={() => setDrinkLightboxIndex(-1)}
+                controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
                 render={{
                     buttonPrev: slides.length <= 1 ? () => null : undefined,
                     buttonNext: slides.length <= 1 ? () => null : undefined,

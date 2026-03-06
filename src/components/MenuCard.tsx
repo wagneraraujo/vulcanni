@@ -11,8 +11,19 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
 
     console.log(item?.image)
 
+    const renderNome = (nome: string) => {
+        const baseName = nome.includes(' / ') ? nome.split(' / ')[0] : nome;
+        if (!baseName.includes(' & ')) return baseName;
+        return baseName.split(' & ').map((part, i, arr) => (
+            <span key={i}>
+                {part}
+                {i < arr.length - 1 && <span className="font-sans italic font-light mx-1">&</span>}
+            </span>
+        ));
+    };
+
     return (
-        <div className="group relative bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 flex flex-col h-full">
+        <div className="group relative bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 flex flex-col h-full active:scale-[0.98]">
             {/* Image Section - Only render if image exists and no error occurred */}
             {item?.image && !imageError && (
                 <div
@@ -22,7 +33,7 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                     <img
                         src={item?.image}
                         alt={item?.nome}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                        className={`w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 ${item.imageClassName || ''}`}
                         loading="lazy"
                         {...(item?.image?.startsWith('http') ? { crossOrigin: 'anonymous' } : {})}
                         onError={(e) => {
@@ -52,8 +63,8 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
             <div className="p-6 flex flex-col flex-1">
                 <div className="flex justify-between items-start mb-2">
                     <div className="flex flex-col leading-tight">
-                        <h3 className="font-serif text-2xl text-foreground group-hover:text-primary transition-colors duration-300">
-                            {item.nome.includes(' / ') ? item.nome.split(' / ')[0] : item.nome}
+                        <h3 className="font-serif text-2xl text-primary transition-colors duration-300">
+                            {renderNome(item.nome)}
                         </h3>
                         {item.nome.includes(' / ') && (
                             <span className="font-serif text-sm italic text-muted-foreground mt-0.5">
@@ -72,8 +83,15 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
 
                 {
                     item.opcional && (
-                        <p className="text-muted-foreground text-sm font-semibold leading-relaxed mb-6 flex-1">
+                        <p className="text-muted-foreground text-sm font-semibold leading-relaxed mb-2 flex-1">
                             {item.opcional}
+                        </p>
+                    )
+                }
+                {
+                    item.opcionalEn && (
+                        <p className="text-red-600 text-sm font-semibold leading-relaxed mb-6 flex-1">
+                            {item.opcionalEn}
                         </p>
                     )
                 }

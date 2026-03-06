@@ -3,7 +3,9 @@ export interface MenuItem {
     ingredientes?: string;
     preco: number;
     opcional?: string;
+    opcionalEn?: string;
     image?: string;
+    imageClassName?: string;
 }
 
 export interface DrinkItem {
@@ -116,6 +118,7 @@ export const leClassiche: MenuItem[] = [
         ingredientes: "Creme de parmesão, manjericão, mozzarella fior di latte, mozzarella defumada (provola), gorgonzola, azeite extra virgem",
         preco: 12,
         opcional: "Sugestão: creme de trufa +3",
+        opcionalEn: "Suggestion: truffle cream +3",
         image: "/galeria/DSC01977.jpg"
     }
 ];
@@ -137,7 +140,8 @@ export const leSpecialita: MenuItem[] = [
         nome: "D. Afonso Henriques",
         ingredientes: "Formato de raquete, mozzarella de bufala, tomate amarelo, rúcula, presunto de Parma, lascas de parmesão, azeite extra virgem, cabo recheado de ricota e salame Napoli",
         preco: 16,
-        image: "/menu/specialita/afonso-henriques.jpg"
+        image: "/menu/specialita/afonso-henriques.jpg",
+        imageClassName: "object-[center_40%] scale-[1.15]"
     },
     {
         nome: "VULCANICI",
@@ -155,7 +159,8 @@ export const leSpecialita: MenuItem[] = [
         nome: "Doce Armonia / Doce Armonia",
         ingredientes: "Creme de pistacchio, fiambre, cebola caramelizada, stracciatella, granula de pistacchio",
         preco: 16,
-        image: "/galeria/DSC02087.jpg"
+        image: "/galeria/DSC02087.jpg",
+        imageClassName: "object-[center_70%] scale-105"
     },
     {
         nome: "Parmigiana",
@@ -324,7 +329,7 @@ export const bebidasDestaque: DrinkItem[] = [
         nome: "Pinot Grigio",
         descricao: "Branco leve e fragrante, notas de pera e maçã, sabor seco e direto.",
         preco: 16,
-        image: "/bebidas/pinot-grigio.jpg",
+        image: "",
         categoria: "vinho-branco"
     },
     // Vinhos Rosé
