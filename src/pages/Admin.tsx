@@ -20,6 +20,7 @@ export default function Admin() {
     const [editingItem, setEditingItem] = useState<{ type: 'menu' | 'drink'; categoryIdx?: number; itemIdx?: number } | null>(null);
     const [draggingItemIdx, setDraggingItemIdx] = useState<number | null>(null);
     const [dragOverItemIdx, setDragOverItemIdx] = useState<number | null>(null);
+    const [dragContext, setDragContext] = useState<string | null>(null);
 
     useEffect(() => {
         setLocalData(data);
@@ -119,6 +120,14 @@ export default function Admin() {
         setEditingItem(null);
     };
 
+    const reorderDrinkItem = (fromIdx: number, toIdx: number) => {
+        if (fromIdx === toIdx) return;
+        const items = [...localData.bebidasDestaque];
+        const [moved] = items.splice(fromIdx, 1);
+        items.splice(toIdx, 0, moved);
+        setLocalData({ ...localData, bebidasDestaque: items });
+    };
+
     const updateDrinkItem = (itemIdx: number, item: DrinkItem) => {
         const newItems = [...localData.bebidasDestaque];
         newItems[itemIdx] = item;
@@ -149,6 +158,14 @@ export default function Admin() {
         const list = localData[listName] as MenuItem[];
         const newItem: MenuItem = { nome: 'Novo item', preco: 0 };
         setLocalData({ ...localData, [listName]: [...list, newItem] });
+    };
+
+    const reorderDrinkListItem = (listName: keyof MenuData, fromIdx: number, toIdx: number) => {
+        if (fromIdx === toIdx) return;
+        const list = [...(localData[listName] as MenuItem[])];
+        const [moved] = list.splice(fromIdx, 1);
+        list.splice(toIdx, 0, moved);
+        setLocalData({ ...localData, [listName]: list });
     };
 
     if (!isAuthenticated) {
@@ -302,28 +319,37 @@ export default function Admin() {
                         )}
 
                         <div className="space-y-3">
-                            {localData.menuCategories[activeCategoryIdx].items.map((item, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`bg-card border border-border rounded-xl p-4 flex ${dragOverItemIdx === idx ? 'ring-2 ring-primary/40' : ''}`}
-                                    draggable
-                                    onDragStart={() => setDraggingItemIdx(idx)}
-                                    onDragOver={(e) => {
-                                        e.preventDefault();
-                                        if (draggingItemIdx === null || draggingItemIdx === idx) return;
-                                        setDragOverItemIdx(idx);
-                                    }}
-                                    onDrop={() => {
-                                        if (draggingItemIdx === null || draggingItemIdx === idx) return;
-                                        reorderMenuItem(activeCategoryIdx, draggingItemIdx, idx);
-                                        setDraggingItemIdx(null);
-                                        setDragOverItemIdx(null);
-                                    }}
-                                    onDragEnd={() => {
-                                        setDraggingItemIdx(null);
-                                        setDragOverItemIdx(null);
-                                    }}
-                                >
+                            {localData.menuCategories[activeCategoryIdx].items.map((item, idx) => {
+                                const contextKey = `menu-${activeCategoryIdx}`;
+                                return (
+                                    <div
+                                        key={idx}
+                                        className={`bg-card border border-border rounded-xl p-4 flex ${dragContext === contextKey && dragOverItemIdx === idx ? 'ring-2 ring-primary/40' : ''}`}
+                                        draggable
+                                        onDragStart={() => {
+                                            setDraggingItemIdx(idx);
+                                            setDragContext(contextKey);
+                                        }}
+                                        onDragOver={(e) => {
+                                            e.preventDefault();
+                                            if (dragContext !== contextKey) return;
+                                            if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                            setDragOverItemIdx(idx);
+                                        }}
+                                        onDrop={() => {
+                                            if (dragContext !== contextKey) return;
+                                            if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                            reorderMenuItem(activeCategoryIdx, draggingItemIdx, idx);
+                                            setDraggingItemIdx(null);
+                                            setDragOverItemIdx(null);
+                                            setDragContext(null);
+                                        }}
+                                        onDragEnd={() => {
+                                            setDraggingItemIdx(null);
+                                            setDragOverItemIdx(null);
+                                            setDragContext(null);
+                                        }}
+                                    >
                                     {editingItem?.type === 'menu' && editingItem.categoryIdx === activeCategoryIdx && editingItem.itemIdx === idx ? (
                                         <AdminItemForm
                                             item={item}
@@ -369,7 +395,8 @@ export default function Admin() {
                                         </div>
                                     )}
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 )}
@@ -397,8 +424,37 @@ export default function Admin() {
                         )}
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {localData.bebidasDestaque.map((item, idx) => (
-                                <div key={idx} className="bg-card border border-border rounded-xl p-4">
+                            {localData.bebidasDestaque.map((item, idx) => {
+                                const contextKey = 'drinks-featured';
+                                return (
+                                    <div
+                                        key={idx}
+                                        className={`bg-card border border-border rounded-xl p-4 flex ${dragContext === contextKey && dragOverItemIdx === idx ? 'ring-2 ring-primary/40' : ''}`}
+                                        draggable
+                                        onDragStart={() => {
+                                            setDraggingItemIdx(idx);
+                                            setDragContext(contextKey);
+                                        }}
+                                        onDragOver={(e) => {
+                                            e.preventDefault();
+                                            if (dragContext !== contextKey) return;
+                                            if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                            setDragOverItemIdx(idx);
+                                        }}
+                                        onDrop={() => {
+                                            if (dragContext !== contextKey) return;
+                                            if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                            reorderDrinkItem(draggingItemIdx, idx);
+                                            setDraggingItemIdx(null);
+                                            setDragOverItemIdx(null);
+                                            setDragContext(null);
+                                        }}
+                                        onDragEnd={() => {
+                                            setDraggingItemIdx(null);
+                                            setDragOverItemIdx(null);
+                                            setDragContext(null);
+                                        }}
+                                    >
                                     {editingItem?.type === 'drink' && editingItem.itemIdx === idx ? (
                                         <AdminItemForm
                                             item={item}
@@ -421,6 +477,9 @@ export default function Admin() {
                                                 )}
                                             </div>
                                             <div className="flex gap-1 flex-shrink-0">
+                                                <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
+                                                    <GripVertical className="w-4 h-4" />
+                                                </div>
                                                 <button
                                                     onClick={() => setEditingItem({ type: 'drink', itemIdx: idx })}
                                                     className="p-2 hover:bg-muted rounded-lg transition"
@@ -437,7 +496,8 @@ export default function Admin() {
                                         </div>
                                     )}
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 )}
@@ -470,29 +530,63 @@ export default function Admin() {
                                         </button>
                                     </div>
                                     <div className="space-y-2">
-                                        {list.map((item, idx) => (
-                                            <div key={idx} className="flex items-center gap-3 bg-card border border-border rounded-lg p-3">
-                                                <input
-                                                    className="flex-1 bg-transparent text-sm focus:outline-none"
-                                                    value={item.nome}
-                                                    onChange={e => updateDrinkListItem(key as keyof MenuData, idx, { ...item, nome: e.target.value })}
-                                                />
-                                                <span className="text-muted-foreground text-sm">€</span>
-                                                <input
-                                                    type="number"
-                                                    step="0.5"
-                                                    className="w-16 bg-muted rounded px-2 py-1 text-sm"
-                                                    value={item.preco}
-                                                    onChange={e => updateDrinkListItem(key as keyof MenuData, idx, { ...item, preco: parseFloat(e.target.value) || 0 })}
-                                                />
-                                                <button
-                                                    onClick={() => deleteDrinkListItem(key as keyof MenuData, idx)}
-                                                    className="p-1.5 hover:bg-red-50 text-red-500 rounded transition"
+                                        {list.map((item, idx) => {
+                                            const listName = key as keyof MenuData;
+                                            const contextKey = `drinks-list-${listName}`;
+                                            return (
+                                                <div
+                                                    key={idx}
+                                                    className={`flex items-center gap-3 bg-card border border-border rounded-lg p-3 ${dragContext === contextKey && dragOverItemIdx === idx ? 'ring-2 ring-primary/40' : ''}`}
+                                                    draggable
+                                                    onDragStart={() => {
+                                                        setDraggingItemIdx(idx);
+                                                        setDragContext(contextKey);
+                                                    }}
+                                                    onDragOver={(e) => {
+                                                        e.preventDefault();
+                                                        if (dragContext !== contextKey) return;
+                                                        if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                                        setDragOverItemIdx(idx);
+                                                    }}
+                                                    onDrop={() => {
+                                                        if (dragContext !== contextKey) return;
+                                                        if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                                        reorderDrinkListItem(listName, draggingItemIdx, idx);
+                                                        setDraggingItemIdx(null);
+                                                        setDragOverItemIdx(null);
+                                                        setDragContext(null);
+                                                    }}
+                                                    onDragEnd={() => {
+                                                        setDraggingItemIdx(null);
+                                                        setDragOverItemIdx(null);
+                                                        setDragContext(null);
+                                                    }}
                                                 >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                        ))}
+                                                    <div className="p-1.5 cursor-move text-muted-foreground flex items-center justify-center">
+                                                        <GripVertical className="w-4 h-4" />
+                                                    </div>
+                                                    <input
+                                                        className="flex-1 bg-transparent text-sm focus:outline-none"
+                                                        value={item.nome}
+                                                        onChange={e => updateDrinkListItem(listName, idx, { ...item, nome: e.target.value })}
+                                                    />
+                                                    <span className="text-muted-foreground text-sm">€</span>
+                                                    <input
+                                                        type="number"
+                                                        step="0.5"
+                                                        className="w-16 bg-muted rounded px-2 py-1 text-sm"
+                                                        value={item.preco}
+                                                        onChange={e => updateDrinkListItem(listName, idx, { ...item, preco: parseFloat(e.target.value) || 0 })}
+                                                    />
+                                                    <button
+                                                        onClick={() => deleteDrinkListItem(listName, idx)}
+                                                        className="p-1.5 hover:bg-red-50 text-red-500 rounded transition"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             );
