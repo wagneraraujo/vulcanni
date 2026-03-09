@@ -33,7 +33,7 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                     <img
                         src={item?.image}
                         alt={item?.nome}
-                        className={`w-full h-full object-contain transition-transform duration-700 ease-in-out group-hover:scale-110 ${item.imageClassName || ''}`}
+                        className={`w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 ${item.imageClassName || ''}`}
                         loading="lazy"
                         {...(item?.image?.startsWith('http') ? { crossOrigin: 'anonymous' } : {})}
                         onError={(e) => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useMenuData, type MenuData } from '../hooks/useMenuData';
 import AdminItemForm from '../components/AdminItemForm';
 import type { MenuItem, DrinkItem } from '../data/menuData';
-import { Lock, Save, Plus, Trash2, Edit3, ArrowLeft, Wine, Utensils, GlassWater, AlertTriangle } from 'lucide-react';
+import { Lock, Save, Plus, Trash2, Edit3, ArrowLeft, Wine, Utensils, GlassWater, AlertTriangle, GripVertical } from 'lucide-react';
 
 const ADMIN_PASSWORD_KEY = 'vulcanici_admin_password';
 
@@ -18,6 +18,8 @@ export default function Admin() {
     const [activeTab, setActiveTab] = useState<'menu' | 'drinks' | 'drinks-list'>('menu');
     const [activeCategoryIdx, setActiveCategoryIdx] = useState(0);
     const [editingItem, setEditingItem] = useState<{ type: 'menu' | 'drink'; categoryIdx?: number; itemIdx?: number } | null>(null);
+    const [draggingItemIdx, setDraggingItemIdx] = useState<number | null>(null);
+    const [dragOverItemIdx, setDragOverItemIdx] = useState<number | null>(null);
 
     useEffect(() => {
         setLocalData(data);
@@ -83,6 +85,16 @@ export default function Admin() {
         newCats[categoryIdx] = { ...newCats[categoryIdx], items: [...newCats[categoryIdx].items, item] };
         setLocalData({ ...localData, menuCategories: newCats });
         setEditingItem(null);
+    };
+
+    const reorderMenuItem = (categoryIdx: number, fromIdx: number, toIdx: number) => {
+        if (fromIdx === toIdx) return;
+        const newCats = [...localData.menuCategories];
+        const items = [...newCats[categoryIdx].items];
+        const [moved] = items.splice(fromIdx, 1);
+        items.splice(toIdx, 0, moved);
+        newCats[categoryIdx] = { ...newCats[categoryIdx], items };
+        setLocalData({ ...localData, menuCategories: newCats });
     };
 
     const updateMenuItem = (categoryIdx: number, itemIdx: number, item: MenuItem) => {
@@ -291,7 +303,27 @@ export default function Admin() {
 
                         <div className="space-y-3">
                             {localData.menuCategories[activeCategoryIdx].items.map((item, idx) => (
-                                <div key={idx} className="bg-card border border-border rounded-xl p-4">
+                                <div
+                                    key={idx}
+                                    className={`bg-card border border-border rounded-xl p-4 flex ${dragOverItemIdx === idx ? 'ring-2 ring-primary/40' : ''}`}
+                                    draggable
+                                    onDragStart={() => setDraggingItemIdx(idx)}
+                                    onDragOver={(e) => {
+                                        e.preventDefault();
+                                        if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                        setDragOverItemIdx(idx);
+                                    }}
+                                    onDrop={() => {
+                                        if (draggingItemIdx === null || draggingItemIdx === idx) return;
+                                        reorderMenuItem(activeCategoryIdx, draggingItemIdx, idx);
+                                        setDraggingItemIdx(null);
+                                        setDragOverItemIdx(null);
+                                    }}
+                                    onDragEnd={() => {
+                                        setDraggingItemIdx(null);
+                                        setDragOverItemIdx(null);
+                                    }}
+                                >
                                     {editingItem?.type === 'menu' && editingItem.categoryIdx === activeCategoryIdx && editingItem.itemIdx === idx ? (
                                         <AdminItemForm
                                             item={item}
@@ -301,7 +333,7 @@ export default function Admin() {
                                             onCancel={() => setEditingItem(null)}
                                         />
                                     ) : (
-                                        <div className="flex items-start justify-between gap-4">
+                                        <div className="flex items-start justify-between gap-4 w-full">
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center gap-3">
                                                     <h3 className="font-semibold truncate">{item.nome}</h3>
@@ -318,6 +350,9 @@ export default function Admin() {
                                                 )}
                                             </div>
                                             <div className="flex gap-1 flex-shrink-0">
+                                                <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
+                                                    <GripVertical className="w-4 h-4" />
+                                                </div>
                                                 <button
                                                     onClick={() => setEditingItem({ type: 'menu', categoryIdx: activeCategoryIdx, itemIdx: idx })}
                                                     className="p-2 hover:bg-muted rounded-lg transition"
