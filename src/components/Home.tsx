@@ -51,11 +51,13 @@ export default function Home() {
 
                         {/* Logo - Center Stage with breathing room */}
                         <div className="animate-fade-in-up opacity-0-start mb-12 transform hover:scale-105 transition-transform duration-700 ease-out">
-                            <img
-                                src="/logo-vulcani.png"
-                                alt="Vulcanici Pizzeria Napoletana"
-                                className="h-32 md:h-40 lg:h-48 w-auto object-contain opacity-90"
-                            />
+                            <Link to="/">
+                                <img
+                                    src="/logo-vulcani.png"
+                                    alt="Vulcanici Pizzeria Napoletana"
+                                    className="h-32 md:h-40 lg:h-48 w-auto object-contain opacity-90"
+                                />
+                            </Link>
                         </div>
 
                         {/* Typography - Serif Headline */}
@@ -65,7 +67,7 @@ export default function Home() {
 
                         {/* Subtitle - Sans Serif Modern */}
                         <p className="animate-fade-in-up opacity-0-start delay-300 text-center text-lg md:text-xl text-muted-foreground font-light tracking-widest uppercase mb-12 max-w-2xl border-y border-border/40 py-4">
-                            Sabor Autêntico em Guimarães e  Porto
+                            Sabor Autêntico em Guimarães <br /> e em breve no Porto
                         </p>
 
                         {/* Narrative Paragraph */}

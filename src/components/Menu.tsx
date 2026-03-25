@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MapPin, Instagram, Facebook } from 'lucide-react';
 import MenuCard from './MenuCard';
 import DrinkCard from './DrinkCard';
@@ -33,28 +34,16 @@ export default function Menu() {
     } = data;
 
     const [activeCategory, setActiveCategory] = useState(0);
-    const [lightboxIndex, setLightboxIndex] = useState(-1);
-    const [drinkLightboxIndex, setDrinkLightboxIndex] = useState(-1);
+    const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+    const [drinkLightboxSrc, setDrinkLightboxSrc] = useState<string | null>(null);
 
     // TOTAL_TABS = menuCategories.length + "Bebidas em Destaque"
     const DRINKS_HIGHLIGHT_TAB = menuCategories.length;
 
-    const currentCategoryItems = activeCategory < menuCategories.length
-        ? menuCategories[activeCategory].items
-        : [];
-
-    const itemsWithImages = currentCategoryItems.filter((item: MenuItem) => item.image);
-    const slides = itemsWithImages.map((item: MenuItem) => ({ src: item.image! }));
-
     const handleImageClick = (item: MenuItem) => {
         if (!item.image) return;
-        const index = itemsWithImages.findIndex((i: MenuItem) => i.image === item.image);
-        if (index >= 0) {
-            setLightboxIndex(index);
-        }
+        setLightboxSrc(item.image);
     };
-
-    const drinkSlides = bebidasDestaque.map(item => ({ src: item.image }));
 
     const whatsappNumber = '+351939000735';
     const whatsappMessage = 'Olá! Gostaria de fazer uma reserva na Vulcanici Pizzeria.';
@@ -79,12 +68,13 @@ export default function Menu() {
 
                     {/* Logo & Title */}
                     <div className="flex items-center gap-4">
-                        <img
-                            src="/logo-vulcani.png"
-                            alt="Vulcanici Pizzeria"
-                            className="h-12 w-auto object-contain brightness-0 invert"
-                        />
-
+                        <Link to="/">
+                            <img
+                                src="/logo-vulcani.png"
+                                alt="Vulcanici Pizzeria"
+                                className="h-12 w-auto object-contain brightness-0 invert"
+                            />
+                        </Link>
                     </div>
 
                     {/* Locations - Compact */}
@@ -138,7 +128,7 @@ export default function Menu() {
 
                 {/* Mobile Menu (Accordion) */}
                 <div className="md:hidden">
-                    <MenuMobile onImageClick={handleImageClick} />
+                    <MenuMobile />
                 </div>
 
                 {/* Desktop Menu (Tabs) */}
@@ -181,7 +171,7 @@ export default function Menu() {
                                     <DrinkCard
                                         key={index}
                                         item={item}
-                                        onImageClick={() => setDrinkLightboxIndex(index)}
+                                        onImageClick={() => setDrinkLightboxSrc(item.image)}
                                     />
                                 ))}
                             </div>
@@ -207,7 +197,7 @@ export default function Menu() {
 
                         {/* Contact */}
                         <div className="text-center space-y-4">
-                            <h4 className="font-serif text-xl font-bold text-accent">Contato</h4>
+                            <h4 className="font-serif text-xl font-bold text-accent">Contacto</h4>
                             <div className="space-y-4">
                                 <div>
                                     <p className="font-bold text-white">Guimarães</p>
@@ -258,28 +248,22 @@ export default function Menu() {
 
             {/* Lightbox - Food */}
             <Lightbox
-                index={lightboxIndex}
-                slides={slides}
-                open={lightboxIndex >= 0}
-                close={() => setLightboxIndex(-1)}
+                slides={lightboxSrc ? [{ src: lightboxSrc }] : []}
+                open={!!lightboxSrc}
+                close={() => setLightboxSrc(null)}
                 controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
-                render={{
-                    buttonPrev: () => null,
-                    buttonNext: () => null,
-                }}
+                carousel={{ finite: true }}
+                render={{ buttonPrev: () => null, buttonNext: () => null }}
             />
 
             {/* Lightbox - Drinks */}
             <Lightbox
-                index={drinkLightboxIndex}
-                slides={drinkSlides}
-                open={drinkLightboxIndex >= 0}
-                close={() => setDrinkLightboxIndex(-1)}
+                slides={drinkLightboxSrc ? [{ src: drinkLightboxSrc }] : []}
+                open={!!drinkLightboxSrc}
+                close={() => setDrinkLightboxSrc(null)}
                 controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
-                render={{
-                    buttonPrev: slides.length <= 1 ? () => null : undefined,
-                    buttonNext: slides.length <= 1 ? () => null : undefined,
-                }}
+                carousel={{ finite: true }}
+                render={{ buttonPrev: () => null, buttonNext: () => null }}
             />
         </div>
     );

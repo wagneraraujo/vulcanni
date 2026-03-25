@@ -11,19 +11,15 @@ import DrinkCard from './DrinkCard';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { useMenuData } from '../hooks/useMenuData';
-import { type MenuItem } from '../data/menuData';
 
-interface MenuMobileProps {
-    onImageClick: (item: MenuItem) => void;
-}
-
-export default function MenuMobile({ onImageClick }: MenuMobileProps) {
+export default function MenuMobile() {
     const { data } = useMenuData();
     const {
         menuCategories, bebidasDestaque,
     } = data;
 
     const [drinkLightboxIndex, setDrinkLightboxIndex] = useState(-1);
+    const [foodLightboxSrc, setFoodLightboxSrc] = useState<string | null>(null);
     const drinkSlides = bebidasDestaque.map(item => ({ src: item.image }));
 
 
@@ -72,7 +68,7 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                                     <MenuCard
                                         key={idx}
                                         item={item}
-                                        onImageClick={() => onImageClick(item)}
+                                        onImageClick={() => item.image && setFoodLightboxSrc(item.image)}
                                     />
                                 ))}
                             </div>
@@ -85,9 +81,9 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                     <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden [&>svg]:hidden">
                         <div className="absolute inset-0 z-0">
                             <img
-                                src="/bg-pizza.jpg"
+                                src="/galeria/47a0a1cd-3e26-40c2-8c1f-3899c3906ce3-1772454138970.jpeg"
                                 alt="Bebidas em Destaque"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                className="w-full h-full object-cover transition-transform duration-700"
                                 loading="lazy"
                             />
                             <div className="absolute inset-0 bg-black/55 group-hover:bg-black/45 transition-colors duration-300" />
@@ -116,12 +112,24 @@ export default function MenuMobile({ onImageClick }: MenuMobileProps) {
                 </AccordionItem>
             </Accordion>
 
+            {/* Lightbox - Food */}
+            <Lightbox
+                slides={foodLightboxSrc ? [{ src: foodLightboxSrc }] : []}
+                open={!!foodLightboxSrc}
+                close={() => setFoodLightboxSrc(null)}
+                controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
+                carousel={{ finite: true }}
+                render={{ buttonPrev: () => null, buttonNext: () => null }}
+            />
+
             {/* Lightbox - Drinks */}
             <Lightbox
-                index={drinkLightboxIndex}
-                slides={drinkSlides}
+                slides={drinkLightboxIndex >= 0 && drinkSlides[drinkLightboxIndex] ? [drinkSlides[drinkLightboxIndex]] : []}
                 open={drinkLightboxIndex >= 0}
                 close={() => setDrinkLightboxIndex(-1)}
+                controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
+                carousel={{ finite: true }}
+                render={{ buttonPrev: () => null, buttonNext: () => null }}
             />
         </div>
     );
