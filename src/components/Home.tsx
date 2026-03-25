@@ -97,7 +97,7 @@ export default function Home() {
                             className="animate-fade-in-up opacity-0-start mt-2 delay-700 group relative px-10 py-5 bg-primary text-primary-foreground font-serif text-xl tracking-wide overflow-hidden rounded-sm transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20"
                         >
                             <span className="relative z-10 flex items-center gap-3">
-                                RESERVAS/TAKEAWAY GUIMARÃES
+                                Take Away
                                 <ChevronDown className="w-5 h-5 -rotate-90 group-hover:translate-x-1 transition-transform" />
                             </span>
                             <div className="absolute inset-0 bg-primary-foreground/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
