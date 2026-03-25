@@ -184,7 +184,7 @@ export default function Menu() {
             <footer className="bg-primary text-primary-foreground py-16 mt-20 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/bg-pizza.jpg')] bg-cover opacity-10 mix-blend-overlay" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                         {/* Brand */}
                         <div className="text-center md:text-left space-y-4">
                             <div className="flex items-center justify-center md:justify-start gap-4">
@@ -196,29 +196,53 @@ export default function Menu() {
                         </div>
 
                         {/* Contact */}
-                        <div className="text-center space-y-4">
+                        <div className="text-center md:text-left space-y-4">
                             <h4 className="font-serif text-xl font-bold text-accent">Contacto</h4>
+                            <div className="pt-2 text-vulcanici-accent-yellow font-bold">
+                                <p><a href="tel:+351939000735">+351 939 000 735</a></p>
+                            </div>
                             <div className="space-y-4">
                                 <div>
-                                    <p className="font-bold text-white">Guimarães</p>
-                                    <p>R. Antero de Quental, 253</p>
-                                    <p>4810-026 Guimarães</p>
+                                    <a href='https://www.google.com/maps/place/R.+Antero+de+Quental+253,+4810-032+Costa,+Portugal/@41.4484024,-8.2852663,858m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd24ef938d5d2085:0xbfdb5f8d87d89294!8m2!3d41.4483984!4d-8.2826914!16s%2Fg%2F11nnknnw5y?entry=ttu&g_ep=EgoyMDI2MDMyMi4wIKXMDSoASAFQAw%3D%3D' target='_blank' rel='noopener noreferrer'>
+                                        <p className="font-bold text-white">Guimarães</p>
+                                        <p>R. Antero de Quental, 253</p>
+                                        <p>4810-026 Guimarães</p>
+                                    </a>
                                 </div>
                                 <div>
-                                    <p className="font-bold text-white">Porto</p>
-                                    <p>Rua de Faria Guimarães 275</p>
-                                    <p>Santo Ildefonso 4000-206 Porto</p>
+                                    <a href="https://www.google.com/maps/search/Rua+de+Faria+Guimar%C3%A3es+275,+Santo+Ildefonso+4000-206+Porto/@41.1564337,-8.6090207,861m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI2MDMyMi4wIKXMDSoASAFQAw%3D%3D" target='_blank' rel='noopener noreferrer'>
+                                        <p className="font-bold text-white">Porto</p>
+                                        <p>Rua de Faria Guimarães 275</p>
+                                        <p>Santo Ildefonso 4000-206 Porto</p>
+                                    </a>
                                 </div>
-                                <div className="pt-2 text-vulcanici-accent-yellow font-bold">
-                                    <p>+351 939 000 735</p>
+
+                            </div>
+                        </div>
+
+                        {/* Horário */}
+                        <div className="text-center md:text-left space-y-4">
+                            <h4 className="font-serif text-xl font-bold text-accent">Horário</h4>
+                            <div className="space-y-4 text-sm text-primary-foreground/80">
+                                <div>
+                                    <p className="font-bold text-white">Segunda, Quinta e Sexta</p>
+                                    <p>19:00 às 22:30</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-white">Terça, Sábado e Domingo</p>
+                                    <p>12:00 às 15:00 <span className="mx-1">•</span> 19:00 às 23:00</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-white">Quarta</p>
+                                    <p className="text-vulcanici-accent-yellow">Encerrado</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Social */}
-                        <div className="text-center md:text-right space-y-4">
+                        <div className="text-center md:text-left space-y-4">
                             <h4 className="font-serif text-xl font-bold text-accent">Siga-nos</h4>
-                            <div className="flex justify-center md:justify-end gap-6">
+                            <div className="flex justify-center md:justify-start gap-6">
                                 <a href="https://www.instagram.com/vulcaniciguimaraes" className="hover:text-accent transition-colors">
                                     <Instagram className="w-6 h-6" />
                                 </a>

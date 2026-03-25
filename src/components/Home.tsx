@@ -1,4 +1,4 @@
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Instagram, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // WhatsApp Icon Component
@@ -90,6 +90,18 @@ export default function Home() {
                             </span>
                             <div className="absolute inset-0 bg-primary-foreground/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                         </Link>
+                        <a
+                            href="https://wa.me/c/351939000735"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="animate-fade-in-up opacity-0-start mt-2 delay-700 group relative px-10 py-5 bg-primary text-primary-foreground font-serif text-xl tracking-wide overflow-hidden rounded-sm transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20"
+                        >
+                            <span className="relative z-10 flex items-center gap-3">
+                                RESERVAS/TAKEAWAY GUIMARÃES
+                                <ChevronDown className="w-5 h-5 -rotate-90 group-hover:translate-x-1 transition-transform" />
+                            </span>
+                            <div className="absolute inset-0 bg-primary-foreground/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                        </a>
 
                     </div>
                 </section>
@@ -102,14 +114,78 @@ export default function Home() {
                     <GallerySection />
                 </section> */}
 
-                {/* FOOTER */}
-                <footer className="w-full bg-primary text-primary-foreground py-12 text-center">
-                    <div className="animate-pulse-slow mb-4">
-                        <img src="/logo-vulcani.png" alt="Vulcanici" className="h-16 w-auto mx-auto object-contain brightness-0 invert opacity-40" />
+                {/* Footer */}
+                <footer className="w-full bg-primary text-primary-foreground py-16 mt-20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[url('/bg-pizza.jpg')] bg-cover opacity-10 mix-blend-overlay" />
+                    <div className="max-w-7xl mx-auto px-6 relative z-10">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                            {/* Brand */}
+                            <div className="text-center md:text-left space-y-4">
+                                <div className="flex items-center justify-center md:justify-start gap-4">
+                                    <img src="/logo-vulcani.png" alt="Vulcanici" className="h-12 brightness-0 invert opacity-80" />
+                                </div>
+                                <p className="text-primary-foreground/60 text-sm max-w-xs mx-auto md:mx-0">
+                                    A verdadeira tradição napolitana no coração de Guimarães. Ingredientes selecionados, paixão italiana.
+                                </p>
+                            </div>
+
+                            {/* Contact */}
+                            <div className="text-center md:text-left space-y-4">
+                                <h4 className="font-serif text-xl font-bold text-accent">Contacto</h4>
+                                <div className="space-y-4">
+                                    <div>
+                                        <p className="font-bold text-white">Guimarães</p>
+                                        <p>R. Antero de Quental, 253</p>
+                                        <p>4810-026 Guimarães</p>
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-white">Porto</p>
+                                        <p>Rua de Faria Guimarães 275</p>
+                                        <p>Santo Ildefonso 4000-206 Porto</p>
+                                    </div>
+                                    <div className="pt-2 text-vulcanici-accent-yellow font-bold">
+                                        <p>+351 939 000 735</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Horário */}
+                            <div className="text-center md:text-left space-y-4">
+                                <h4 className="font-serif text-xl font-bold text-accent">Horário</h4>
+                                <div className="space-y-4 text-sm text-primary-foreground/80">
+                                    <div>
+                                        <p className="font-bold text-white">Segunda, Quinta e Sexta</p>
+                                        <p>19:00 às 22:30</p>
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-white">Terça, Sábado e Domingo</p>
+                                        <p>12:00 às 15:00 <span className="mx-1">•</span> 19:00 às 23:00</p>
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-white">Quarta</p>
+                                        <p className="text-vulcanici-accent-yellow">Encerrado</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Social */}
+                            <div className="text-center md:text-left space-y-4">
+                                <h4 className="font-serif text-xl font-bold text-accent">Siga-nos</h4>
+                                <div className="flex justify-center md:justify-start gap-6">
+                                    <a href="https://www.instagram.com/vulcaniciguimaraes" className="hover:text-accent transition-colors">
+                                        <Instagram className="w-6 h-6" />
+                                    </a>
+                                    <a href="https://www.facebook.com/profile.php?id=61552967728211" className="hover:text-accent transition-colors">
+                                        <Facebook className="w-6 h-6" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="border-t border-primary-foreground/10 pt-8 text-center text-xs text-primary-foreground/40 uppercase tracking-widest">
+                            <p>© {new Date().getFullYear()} Vulcanici Pizzeria Napoletana. Todos os direitos reservados.</p>
+                        </div>
                     </div>
-                    <p className="text-primary-foreground/60 text-xs tracking-[0.2em] uppercase font-sans">
-                        Vulcanici Pizzeria Napoletana © {new Date().getFullYear()}
-                    </p>
                 </footer>
             </div>
         </div>
