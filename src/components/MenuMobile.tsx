@@ -30,7 +30,7 @@ export default function MenuMobile() {
         if (t.includes('classiche')) return '/galeria/DSC01965.jpg'; // Bufalina
         if (t.includes('specialic')) return '/galeria/DSC02197.jpg'; // Pérola Nera
         if (t.includes('calzone')) return '/galeria/DSC02162.jpg'; // Calzone
-        if (t.includes('sobremesa')) return '/bg-pizza.jpg'; // Fallback
+        if (t.includes('sobremesa')) return '/sobremesa.jpg';
         return '/bg-pizza.jpg';
     };
 
@@ -91,7 +91,7 @@ export default function MenuMobile() {
                         </div>
                         <div className="relative z-10 w-full px-6 flex items-center justify-between gap-3 mt-8">
                             <span className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-md">
-                                Bebidas em Destaque
+                                Bebidas
                             </span>
                             <div className="bg-white/20 backdrop-blur-md p-2 rounded-full border border-white/30 shadow-lg transition-transform duration-300 group-data-[state=open]:rotate-180">
                                 <ChevronDown className="w-6 h-6 text-white" />

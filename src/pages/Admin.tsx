@@ -269,7 +269,7 @@ export default function Admin() {
                             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition ${activeTab === 'drinks' ? 'bg-primary/10 text-primary' : 'hover:bg-muted'}`}
                         >
                             <Wine className="w-4 h-4" />
-                            Bebidas em Destaque
+                            Bebidas
                         </button>
                         <button
                             onClick={() => setActiveTab('drinks-list')}
@@ -350,51 +350,51 @@ export default function Admin() {
                                             setDragContext(null);
                                         }}
                                     >
-                                    {editingItem?.type === 'menu' && editingItem.categoryIdx === activeCategoryIdx && editingItem.itemIdx === idx ? (
-                                        <AdminItemForm
-                                            item={item}
-                                            type="menu"
-                                            password={password}
-                                            onSave={updated => updateMenuItem(activeCategoryIdx, idx, updated as MenuItem)}
-                                            onCancel={() => setEditingItem(null)}
-                                        />
-                                    ) : (
-                                        <div className="flex items-start justify-between gap-4 w-full">
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center gap-3">
-                                                    <h3 className="font-semibold truncate">{item.nome}</h3>
-                                                    <span className="text-primary font-bold whitespace-nowrap">€{item.preco.toFixed(2)}</span>
+                                        {editingItem?.type === 'menu' && editingItem.categoryIdx === activeCategoryIdx && editingItem.itemIdx === idx ? (
+                                            <AdminItemForm
+                                                item={item}
+                                                type="menu"
+                                                password={password}
+                                                onSave={updated => updateMenuItem(activeCategoryIdx, idx, updated as MenuItem)}
+                                                onCancel={() => setEditingItem(null)}
+                                            />
+                                        ) : (
+                                            <div className="flex items-start justify-between gap-4 w-full">
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-center gap-3">
+                                                        <h3 className="font-semibold truncate">{item.nome}</h3>
+                                                        <span className="text-primary font-bold whitespace-nowrap">€{item.preco.toFixed(2)}</span>
+                                                    </div>
+                                                    {item.ingredientes && (
+                                                        <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{item.ingredientes}</p>
+                                                    )}
+                                                    {item.opcional && (
+                                                        <p className="text-xs text-muted-foreground/70 mt-1">{item.opcional}</p>
+                                                    )}
+                                                    {item.image && (
+                                                        <p className="text-xs text-green-600 mt-1 truncate">{item.image}</p>
+                                                    )}
                                                 </div>
-                                                {item.ingredientes && (
-                                                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{item.ingredientes}</p>
-                                                )}
-                                                {item.opcional && (
-                                                    <p className="text-xs text-muted-foreground/70 mt-1">{item.opcional}</p>
-                                                )}
-                                                {item.image && (
-                                                    <p className="text-xs text-green-600 mt-1 truncate">{item.image}</p>
-                                                )}
-                                            </div>
-                                            <div className="flex gap-1 flex-shrink-0">
-                                                <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
-                                                    <GripVertical className="w-4 h-4" />
+                                                <div className="flex gap-1 flex-shrink-0">
+                                                    <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
+                                                        <GripVertical className="w-4 h-4" />
+                                                    </div>
+                                                    <button
+                                                        onClick={() => setEditingItem({ type: 'menu', categoryIdx: activeCategoryIdx, itemIdx: idx })}
+                                                        className="p-2 hover:bg-muted rounded-lg transition"
+                                                    >
+                                                        <Edit3 className="w-4 h-4" />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => deleteMenuItem(activeCategoryIdx, idx)}
+                                                        className="p-2 hover:bg-red-50 text-red-500 rounded-lg transition"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
                                                 </div>
-                                                <button
-                                                    onClick={() => setEditingItem({ type: 'menu', categoryIdx: activeCategoryIdx, itemIdx: idx })}
-                                                    className="p-2 hover:bg-muted rounded-lg transition"
-                                                >
-                                                    <Edit3 className="w-4 h-4" />
-                                                </button>
-                                                <button
-                                                    onClick={() => deleteMenuItem(activeCategoryIdx, idx)}
-                                                    className="p-2 hover:bg-red-50 text-red-500 rounded-lg transition"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
                                             </div>
-                                        </div>
-                                    )}
-                                </div>
+                                        )}
+                                    </div>
                                 );
                             })}
                         </div>
@@ -455,47 +455,47 @@ export default function Admin() {
                                             setDragContext(null);
                                         }}
                                     >
-                                    {editingItem?.type === 'drink' && editingItem.itemIdx === idx ? (
-                                        <AdminItemForm
-                                            item={item}
-                                            type="drink"
-                                            password={password}
-                                            onSave={updated => updateDrinkItem(idx, updated as DrinkItem)}
-                                            onCancel={() => setEditingItem(null)}
-                                        />
-                                    ) : (
-                                        <div className="flex items-start justify-between gap-4">
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-xs uppercase tracking-wider px-2 py-0.5 bg-muted rounded-full">{item.categoria}</span>
-                                                    <span className="text-primary font-bold">€{item.preco.toFixed(2)}</span>
+                                        {editingItem?.type === 'drink' && editingItem.itemIdx === idx ? (
+                                            <AdminItemForm
+                                                item={item}
+                                                type="drink"
+                                                password={password}
+                                                onSave={updated => updateDrinkItem(idx, updated as DrinkItem)}
+                                                onCancel={() => setEditingItem(null)}
+                                            />
+                                        ) : (
+                                            <div className="flex items-start justify-between gap-4">
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-xs uppercase tracking-wider px-2 py-0.5 bg-muted rounded-full">{item.categoria}</span>
+                                                        <span className="text-primary font-bold">€{item.preco.toFixed(2)}</span>
+                                                    </div>
+                                                    <h3 className="font-semibold mt-1">{item.nome}</h3>
+                                                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{item.descricao}</p>
+                                                    {item.image && (
+                                                        <p className="text-xs text-green-600 mt-1 truncate">{item.image}</p>
+                                                    )}
                                                 </div>
-                                                <h3 className="font-semibold mt-1">{item.nome}</h3>
-                                                <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{item.descricao}</p>
-                                                {item.image && (
-                                                    <p className="text-xs text-green-600 mt-1 truncate">{item.image}</p>
-                                                )}
-                                            </div>
-                                            <div className="flex gap-1 flex-shrink-0">
-                                                <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
-                                                    <GripVertical className="w-4 h-4" />
+                                                <div className="flex gap-1 flex-shrink-0">
+                                                    <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
+                                                        <GripVertical className="w-4 h-4" />
+                                                    </div>
+                                                    <button
+                                                        onClick={() => setEditingItem({ type: 'drink', itemIdx: idx })}
+                                                        className="p-2 hover:bg-muted rounded-lg transition"
+                                                    >
+                                                        <Edit3 className="w-4 h-4" />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => deleteDrinkItem(idx)}
+                                                        className="p-2 hover:bg-red-50 text-red-500 rounded-lg transition"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
                                                 </div>
-                                                <button
-                                                    onClick={() => setEditingItem({ type: 'drink', itemIdx: idx })}
-                                                    className="p-2 hover:bg-muted rounded-lg transition"
-                                                >
-                                                    <Edit3 className="w-4 h-4" />
-                                                </button>
-                                                <button
-                                                    onClick={() => deleteDrinkItem(idx)}
-                                                    className="p-2 hover:bg-red-50 text-red-500 rounded-lg transition"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
                                             </div>
-                                        </div>
-                                    )}
-                                </div>
+                                        )}
+                                    </div>
                                 );
                             })}
                         </div>
