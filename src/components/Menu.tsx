@@ -116,7 +116,7 @@ export default function Menu() {
                                     : 'bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
                                     }`}
                             >
-                                Bebidas em Destaque
+                                Bebidas
                             </button>
                         </div>
                     </div>
@@ -160,7 +160,7 @@ export default function Menu() {
                             <div className="text-center mb-12">
                                 <span className="text-accent font-serif italic text-lg opacity-80">Nossa Seleção de</span>
                                 <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mt-2">
-                                    Bebidas em Destaque
+                                    Bebidas
                                 </h2>
                                 <p className="text-muted-foreground mt-4 font-light">Vinhos, cervejas e espumantes cuidadosamente selecionados.</p>
                                 <div className="w-24 h-1 bg-accent mx-auto mt-6 rounded-full opacity-60" />
@@ -254,7 +254,7 @@ export default function Menu() {
                     </div>
 
                     <div className="border-t border-primary-foreground/10 pt-8 text-center text-xs text-primary-foreground/40 uppercase tracking-widest">
-                        <p>© {new Date().getFullYear()} Vulcanici Pizzeria Napoletana. Todos os direitos reservados.</p>
+                        <p>© {new Date().getFullYear()} Vulcanici Pizzeria Napoletana. Todos os direitos reservados. Desenvolvido por <a href="https://vvtrafficdata.com/" target="_blank" rel="noopener noreferrer">VV Traffic Data</a></p>
                     </div>
                 </div>
             </footer>

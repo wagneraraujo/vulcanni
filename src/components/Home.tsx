@@ -144,7 +144,8 @@ export default function Home() {
                                         <p>Santo Ildefonso 4000-206 Porto</p>
                                     </div>
                                     <div className="pt-2 text-vulcanici-accent-yellow font-bold">
-                                        <p>+351 939 000 735</p>
+                                        <p><a href="tel:+351939000735">+351 939 000 735</a></p>
+
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +184,7 @@ export default function Home() {
                         </div>
 
                         <div className="border-t border-primary-foreground/10 pt-8 text-center text-xs text-primary-foreground/40 uppercase tracking-widest">
-                            <p>© {new Date().getFullYear()} Vulcanici Pizzeria Napoletana. Todos os direitos reservados.</p>
+                            <p>© {new Date().getFullYear()} Vulcanici Pizzeria Napoletana. Todos os direitos reservados. Desenvolvido por <a href="https://vvtrafficdata.com/" target="_blank" rel="noopener noreferrer">VV Traffic Data</a></p>
                         </div>
                     </div>
                 </footer>
