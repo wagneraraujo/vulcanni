@@ -282,7 +282,7 @@ export const cafeDigestivos: MenuItem[] = [
 export const menuCategories: MenuCategory[] = [
     { title: "Antipasti (Entradas)", items: antipasti },
     { title: "Le Classiche", items: leClassiche },
-    { title: "Le Specialitá", items: leSpecialita },
+    { title: "Le Specialità", items: leSpecialita },
     { title: "Calzone", items: calzone },
     { title: "Sobremesas / Dessert", items: sobremesas }
 ];

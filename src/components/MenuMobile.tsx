@@ -81,7 +81,7 @@ export default function MenuMobile() {
                     <AccordionTrigger className="w-full p-0 hover:no-underline transition-all group relative h-28 overflow-hidden [&>svg]:hidden">
                         <div className="absolute inset-0 z-0">
                             <img
-                                src="/galeria/bebidas.png"
+                                src="/bebidas/cerveja.webp"
                                 alt="Bebidas em Destaque"
                                 className="w-full h-full object-cover transition-transform duration-700"
                                 loading="lazy"
