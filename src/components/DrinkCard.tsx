@@ -39,15 +39,7 @@ export default function DrinkCard({ item, onImageClick }: DrinkCardProps) {
                             alt={item.nome}
                             className="w-full h-full object-contain transition-transform duration-700 ease-in-out"
                             loading="lazy"
-                            {...(item.image?.startsWith('http') ? { crossOrigin: 'anonymous' } : {})}
-                            onError={(e) => {
-                                console.error('❌ Erro ao carregar imagem de bebida:', item.image);
-                                console.error('Detalhes:', e);
-                                setImageError(true);
-                            }}
-                            onLoad={() => {
-                                console.log('✅ Imagem de bebida carregada com sucesso:', item.image);
-                            }}
+                            onError={() => setImageError(true)}
                         />
 
                         {/* Overlay Gradient on Hover */}
@@ -64,10 +56,7 @@ export default function DrinkCard({ item, onImageClick }: DrinkCardProps) {
                     </>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center bg-muted/20">
-                        <div className="text-center p-4">
-                            <span className="text-muted-foreground text-sm italic">Imagem não disponível</span>
-                            {item.image && <p className="text-xs text-muted-foreground/60 mt-1 truncate max-w-[150px]">{item.image}</p>}
-                        </div>
+                        <span className="text-muted-foreground text-sm italic">Imagem não disponível</span>
                     </div>
                 )}
             </div>

@@ -1,8 +1,14 @@
-import { put } from '@vercel/blob';
+import ImageKit from 'imagekit';
 import { IncomingForm } from 'formidable';
 import fs from 'fs';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'vulcanici2024';
+
+const imagekit = new ImageKit({
+    publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+    urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
+});
 
 export const config = {
     api: {
@@ -26,7 +32,6 @@ export default async function handler(req, res) {
     try {
         const folder = req.query?.folder || 'bebidas';
 
-        // Parse multipart form data
         const form = new IncomingForm({ keepExtensions: true });
         const [, files] = await form.parse(req);
         const file = Array.isArray(files.image) ? files.image[0] : files.image;
@@ -38,16 +43,17 @@ export default async function handler(req, res) {
         const rawExt = (file.originalFilename?.split('.').pop() || 'jpg').toLowerCase();
         const mimeMap = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif', heic: 'image/heic' };
         const ext = mimeMap[rawExt] ? rawExt : 'jpg';
-        const contentType = mimeMap[ext] || file.mimetype || 'image/jpeg';
-        const filename = `${folder}/${Date.now()}.${ext}`;
+        const fileName = `${Date.now()}.${ext}`;
         const buffer = fs.readFileSync(file.filepath);
 
-        const blob = await put(filename, buffer, {
-            access: 'public',
-            contentType,
+        const result = await imagekit.upload({
+            file: buffer,
+            fileName,
+            folder: `/${folder}`,
+            useUniqueFileName: false,
         });
 
-        return res.status(200).json({ path: blob.url, url: blob.url });
+        return res.status(200).json({ path: result.url, url: result.url });
     } catch (err) {
         return res.status(500).json({ error: 'Upload error', details: String(err) });
     }
