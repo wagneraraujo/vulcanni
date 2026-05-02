@@ -371,26 +371,28 @@ export default function Admin() {
                                                     {item.opcional && (
                                                         <p className="text-xs text-muted-foreground/70 mt-1">{item.opcional}</p>
                                                     )}
-                                                    {item.image && (
-                                                        <p className="text-xs text-green-600 mt-1 truncate">{item.image}</p>
-                                                    )}
                                                 </div>
-                                                <div className="flex gap-1 flex-shrink-0">
-                                                    <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
-                                                        <GripVertical className="w-4 h-4" />
+                                                <div className="flex gap-2 flex-shrink-0 items-start">
+                                                    {item.image && (
+                                                        <img src={item.image} alt={item.nome} className="w-16 h-16 object-cover rounded-lg border border-border flex-shrink-0" />
+                                                    )}
+                                                    <div className="flex gap-1 flex-shrink-0">
+                                                        <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
+                                                            <GripVertical className="w-4 h-4" />
+                                                        </div>
+                                                        <button
+                                                            onClick={() => setEditingItem({ type: 'menu', categoryIdx: activeCategoryIdx, itemIdx: idx })}
+                                                            className="p-2 hover:bg-muted rounded-lg transition"
+                                                        >
+                                                            <Edit3 className="w-4 h-4" />
+                                                        </button>
+                                                        <button
+                                                            onClick={() => deleteMenuItem(activeCategoryIdx, idx)}
+                                                            className="p-2 hover:bg-red-50 text-red-500 rounded-lg transition"
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
                                                     </div>
-                                                    <button
-                                                        onClick={() => setEditingItem({ type: 'menu', categoryIdx: activeCategoryIdx, itemIdx: idx })}
-                                                        className="p-2 hover:bg-muted rounded-lg transition"
-                                                    >
-                                                        <Edit3 className="w-4 h-4" />
-                                                    </button>
-                                                    <button
-                                                        onClick={() => deleteMenuItem(activeCategoryIdx, idx)}
-                                                        className="p-2 hover:bg-red-50 text-red-500 rounded-lg transition"
-                                                    >
-                                                        <Trash2 className="w-4 h-4" />
-                                                    </button>
                                                 </div>
                                             </div>
                                         )}
@@ -472,10 +474,11 @@ export default function Admin() {
                                                     </div>
                                                     <h3 className="font-semibold mt-1">{item.nome}</h3>
                                                     <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{item.descricao}</p>
-                                                    {item.image && (
-                                                        <p className="text-xs text-green-600 mt-1 truncate">{item.image}</p>
-                                                    )}
                                                 </div>
+                                                <div className="flex gap-2 flex-shrink-0 items-start">
+                                                    {item.image && (
+                                                        <img src={item.image} alt={item.nome} className="w-16 h-16 object-cover rounded-lg border border-border flex-shrink-0" />
+                                                    )}
                                                 <div className="flex gap-1 flex-shrink-0">
                                                     <div className="p-2 cursor-move text-muted-foreground flex items-center justify-center">
                                                         <GripVertical className="w-4 h-4" />
@@ -492,6 +495,7 @@ export default function Admin() {
                                                     >
                                                         <Trash2 className="w-4 h-4" />
                                                     </button>
+                                                </div>
                                                 </div>
                                             </div>
                                         )}

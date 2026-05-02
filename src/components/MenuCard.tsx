@@ -9,8 +9,6 @@ interface MenuCardProps {
 export default function MenuCard({ item, onImageClick }: MenuCardProps) {
     const [imageError, setImageError] = useState(false);
 
-    console.log(item?.image)
-
     const renderNome = (nome: string) => {
         const baseName = nome.includes(' / ') ? nome.split(' / ')[0] : nome;
         if (!baseName.includes(' & ')) return baseName;
@@ -35,15 +33,7 @@ export default function MenuCard({ item, onImageClick }: MenuCardProps) {
                         alt={item?.nome}
                         className={`w-full h-full object-cover transition-transform duration-700 ease-in-out ${item.imageClassName || ''}`}
                         loading="lazy"
-                        {...(item?.image?.startsWith('http') ? { crossOrigin: 'anonymous' } : {})}
-                        onError={(e) => {
-                            console.error('❌ Erro ao carregar imagem:', item?.image);
-                            console.error('Detalhes:', e);
-                            setImageError(true);
-                        }}
-                        onLoad={() => {
-                            console.log('✅ Imagem carregada com sucesso:', item?.image);
-                        }}
+                        onError={() => setImageError(true)}
                     />
 
                     {/* Overlay Gradient on Hover */}
