@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { type DrinkItem } from '../data/menuData';
 
 interface DrinkCardProps {
@@ -25,6 +25,10 @@ const categoriaBadgeClass: Record<DrinkItem['categoria'], string> = {
 export default function DrinkCard({ item, onImageClick }: DrinkCardProps) {
     const [imageError, setImageError] = useState(false);
 
+    useEffect(() => {
+        setImageError(false);
+    }, [item.image]);
+
     return (
         <div className="group relative bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border/50 flex flex-col h-full">
             {/* Image Section */}
@@ -32,7 +36,7 @@ export default function DrinkCard({ item, onImageClick }: DrinkCardProps) {
                 className="relative h-64 overflow-hidden cursor-pointer bg-muted/30"
                 onClick={onImageClick}
             >
-                {!imageError ? (
+                {item.image && !imageError ? (
                     <>
                         <img
                             src={item.image}
