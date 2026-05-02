@@ -257,8 +257,17 @@ export default function AdminItemForm({ item, type, password, onSave, onCancel }
                         )}
                     </div>
                     {image && (
-                        <div className="w-20 h-20 rounded-lg overflow-hidden border border-border flex-shrink-0">
-                            <img src={image} alt="preview" className="w-full h-full object-cover" />
+                        <div className="flex flex-col gap-1 flex-shrink-0">
+                            <div className="w-20 h-20 rounded-lg overflow-hidden border border-border">
+                                <img src={image} alt="preview" className="w-full h-full object-cover" />
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setImage('')}
+                                className="w-20 text-xs text-red-500 hover:text-red-700 hover:bg-red-50 rounded py-0.5 transition border border-red-200"
+                            >
+                                Remover
+                            </button>
                         </div>
                     )}
                 </div>
